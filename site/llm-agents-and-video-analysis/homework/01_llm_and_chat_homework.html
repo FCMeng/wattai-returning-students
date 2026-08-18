@@ -3,23 +3,136 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Homework for Language Models and Structured Chat">
-  <title>Homework: From Language Model to Structured Chat</title>
+  <meta name="description" content="Homework: Decoding Controls and Conversation State">
+  <title>Homework: Decoding Controls and Conversation State</title>
   <link rel="stylesheet" href="../../assets/style.css">
 </head>
 <body>
   <header><div class="wrap"><div class="eyebrow">Watt AI (INNO-4990) · Fall 2026</div><h1>Homework</h1><p>Language models and structured chat</p></div></header>
   <main class="wrap assignment">
     <a class="back-link" href="../">← Back to course materials</a>
-    <h1>From Language Model to Structured Chat</h1>
-    <p>Run one controlled live comparison or agent/video failure matrix. Submit configuration without secrets, structured outcomes, one success, one failure, and a limitation.</p>
-    <h2>Rubric (10 points)</h2>
-    <ul>
-      <li>Correct request, authority, or evaluation contract: 4 points</li>
-      <li>Controlled and reproducible comparison: 2 points</li>
-      <li>Evidence and redacted presentation: 2 points</li>
-      <li>Failure analysis and residual risk: 2 points</li>
-    </ul>
+    <article class="assignment-body">
+<h1 dir="auto">Homework: Decoding Controls and Conversation State</h1>
+<h2 dir="auto">Goal</h2>
+<p dir="auto">Use live Clemson RCD models to answer two concrete questions:</p>
+<ol dir="auto">
+<li>What changes when we vary <code class="notranslate">temperature</code> while holding the request fixed?</li>
+<li>What happens to a conversation constraint when the application does not resend the earlier message that introduced it?</li>
+</ol>
+<p dir="auto">This is a controlled experiment, not a contest to find the most impressive answer. Expected working time: <strong>60–75 minutes</strong>.</p>
+<h2 dir="auto">Before you begin</h2>
+<ul dir="auto">
+<li>Connect to the Clemson network or CUVPN.</li>
+<li>Complete <code class="notranslate">notebooks/00_setup_and_diagnostics.ipynb</code>.</li>
+<li>Review the <code class="notranslate">run_chat()</code> and <code class="notranslate">message_content()</code> examples in Lecture 01.</li>
+<li>Use <code class="notranslate">qwen3-30b-a3b-instruct-fp8</code> for the required work.</li>
+<li>Do not place an API key in a notebook cell, output, screenshot, or submitted file.</li>
+</ul>
+<p dir="auto">Create a new notebook named <code class="notranslate">01_llm_and_chat_homework_submission.ipynb</code>. Record the model ID, <code class="notranslate">temperature</code>, <code class="notranslate">max_tokens</code>, prompt, and number of repetitions. Do not record the API key.</p>
+<h2 dir="auto">Part A — Change one decoding control</h2>
+<p dir="auto">Use this exact request for every required run:</p>
+<blockquote>
+<p dir="auto">Explain why the daytime sky appears blue. Write exactly three bullet points for a high-school student. Each bullet must contain no more than 25 words.</p>
+</blockquote>
+<ol dir="auto">
+<li>Build one <code class="notranslate">messages</code> list containing the request.</li>
+<li>Set <code class="notranslate">max_tokens=220</code>.</li>
+<li>Generate three responses with <code class="notranslate">temperature=0.1</code>.</li>
+<li>Generate three responses with <code class="notranslate">temperature=0.8</code>.</li>
+<li>Do not change the model, messages, token budget, or any other setting between the two groups.</li>
+<li>Store each final answer using <code class="notranslate">message_content()</code>.</li>
+<li>Create a six-row results table with these columns:</li>
+</ol>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>temperature</th>
+<th align="right">repetition</th>
+<th>three_bullets</th>
+<th>length_limit_met</th>
+<th>wording_notes</th>
+<th>factual_concern</th>
+</tr>
+</thead>
+</table></markdown-accessiblity-table>
+<p dir="auto">The final two columns require your judgment. A fluent answer is not automatically correct.</p>
+<p dir="auto">Answer these questions in complete sentences:</p>
+<ul dir="auto">
+<li>Which setting produced more wording variation? Cite at least two outputs.</li>
+<li>Did either setting violate the requested format?</li>
+<li>Why does a higher temperature not mean that the answer is more knowledgeable or more truthful?</li>
+<li>Why can repeated outputs still look similar even when sampling is enabled?</li>
+</ul>
+<h2 dir="auto">Part B — Test application-owned conversation state</h2>
+<ol dir="auto">
+<li>
+<p dir="auto">Send this first user message at <code class="notranslate">temperature=0.1</code> and <code class="notranslate">max_tokens=220</code>:</p>
+<blockquote>
+<p dir="auto">For every reply in this conversation, use exactly three bullet points written for a high-school student. First, explain why the daytime sky appears blue.</p>
+</blockquote>
+</li>
+<li>
+<p dir="auto">Save the assistant response.</p>
+</li>
+<li>
+<p dir="auto">Ask this follow-up question in two conditions:</p>
+<blockquote>
+<p dir="auto">Now explain why sunsets often appear red.</p>
+</blockquote>
+<ul dir="auto">
+<li><strong>Full-history condition:</strong> send the first user message, first assistant response, and follow-up question.</li>
+<li><strong>Dropped-history condition:</strong> send only the follow-up question.</li>
+</ul>
+</li>
+<li>
+<p dir="auto">Record whether each response follows the original three-bullet and audience constraints.</p>
+</li>
+<li>
+<p dir="auto">Explain what the result shows about where conversation state is stored.</p>
+</li>
+<li>
+<p dir="auto">State one limitation of this experiment. For example, a model may happen to produce three bullets even when the earlier constraint was omitted.</p>
+</li>
+</ol>
+<h2 dir="auto">Optional extension — Thinking model</h2>
+<p dir="auto">Repeat one request with <code class="notranslate">qwen3.5-9b</code> and <code class="notranslate">enable_thinking=True</code>. Use at least <code class="notranslate">max_tokens=1200</code> so that reasoning does not consume the entire output budget. Extract the final answer with <code class="notranslate">message_content()</code>; do not assume <code class="notranslate">message.content</code> is always an ordinary string.</p>
+<p dir="auto">This extension is not required for full credit.</p>
+<h2 dir="auto">Hints</h2>
+<details>
+<summary>Hint 1 — Minimal call pattern</summary>
+<p dir="auto">Use <code class="notranslate">message_content(run_chat(messages, CHAT_MODEL, client=client, max_tokens=220, temperature=value))</code>. Keep <code class="notranslate">messages</code> unchanged during Part A.</p>
+</details>
+<details>
+<summary>Hint 2 — Count the requested structure</summary>
+<p dir="auto">Inspect the rendered response rather than relying only on string length. A numbered list is not literally the requested bullet-list format, and a bullet can exceed 25 words.</p>
+</details>
+<details>
+<summary>Hint 3 — Build the full-history request</summary>
+<p dir="auto">The application should create a list with roles in this order: <code class="notranslate">user</code>, <code class="notranslate">assistant</code>, <code class="notranslate">user</code>. The dropped-history request contains only the last <code class="notranslate">user</code> message.</p>
+</details>
+<details>
+<summary>Hint 4 — Interpret variation cautiously</summary>
+<p dir="auto">Temperature rescales token probabilities. It does not verify facts, guarantee creativity, or guarantee that two runs will differ.</p>
+</details>
+<h2 dir="auto">What to submit</h2>
+<p dir="auto">Submit the completed notebook containing:</p>
+<ul dir="auto">
+<li>a redacted configuration block;</li>
+<li>the six Part A responses and results table;</li>
+<li>both Part B responses and the constraint comparison;</li>
+<li>answers to all interpretation questions;</li>
+<li>one experimental limitation;</li>
+<li>no credentials or hidden reasoning text.</li>
+</ul>
+<h2 dir="auto">Rubric (10 points)</h2>
+<ul dir="auto">
+<li><strong>Controlled temperature experiment (3):</strong> six required runs; only temperature changes; settings are recorded.</li>
+<li><strong>Conversation-state experiment (3):</strong> full and dropped histories are constructed correctly and compared.</li>
+<li><strong>Evidence and interpretation (2):</strong> tables cite actual outputs and conclusions do not overstate what temperature or one trial proves.</li>
+<li><strong>Reproducibility and safe submission (1):</strong> model, prompts, settings, and environment are documented without secrets.</li>
+<li><strong>Limitation and communication (1):</strong> one meaningful limitation is stated clearly.</li>
+</ul>
+    </article>
     <a class="button" href="https://raw.githubusercontent.com/FCMeng/wattai-returning-students/2026-Fall/llm_agents_and_video_analysis/homework/01_llm_and_chat_homework.md" download>Download assignment</a>
   </main>
   <footer><div class="wrap"><a href="../">Course materials</a> · <a href="../../">All courses</a></div></footer>

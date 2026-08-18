@@ -3,23 +3,156 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Homework for Tools, Agent Loops, MCP, and Safety">
-  <title>Homework: Tools, Agent Loops, and Safety Boundaries</title>
+  <meta name="description" content="Homework: Complete and Defend a Tool Loop">
+  <title>Homework: Complete and Defend a Tool Loop</title>
   <link rel="stylesheet" href="../../assets/style.css">
 </head>
 <body>
   <header><div class="wrap"><div class="eyebrow">Watt AI (INNO-4990) · Fall 2026</div><h1>Homework</h1><p>Tools, agent loops, MCP, and safety</p></div></header>
   <main class="wrap assignment">
     <a class="back-link" href="../">← Back to course materials</a>
-    <h1>Tools, Agent Loops, and Safety Boundaries</h1>
-    <p>Run one controlled live comparison or agent/video failure matrix. Submit configuration without secrets, structured outcomes, one success, one failure, and a limitation.</p>
-    <h2>Rubric (10 points)</h2>
-    <ul>
-      <li>Correct request, authority, or evaluation contract: 4 points</li>
-      <li>Controlled and reproducible comparison: 2 points</li>
-      <li>Evidence and redacted presentation: 2 points</li>
-      <li>Failure analysis and residual risk: 2 points</li>
-    </ul>
+    <article class="assignment-body">
+<h1 dir="auto">Homework: Complete and Defend a Tool Loop</h1>
+<h2 dir="auto">Goal</h2>
+<p dir="auto">Complete a model → validation → tool → result → model loop using the real USGS earthquake snapshot supplied with the course. Then demonstrate that three different failures are stopped or reported at the correct boundary. Expected working time: <strong>60–75 minutes</strong>.</p>
+<h2 dir="auto">Before you begin</h2>
+<ul dir="auto">
+<li>Connect to the Clemson network or CUVPN.</li>
+<li>Complete <code class="notranslate">notebooks/00_setup_and_diagnostics.ipynb</code> and Lecture 02.</li>
+<li>Use <code class="notranslate">qwen3-30b-a3b-instruct-fp8</code>.</li>
+<li>Use <code class="notranslate">data/usgs_earthquakes_2025_01.jsonl</code>; do not invent earthquake records.</li>
+<li>Review <code class="notranslate">earthquake_lookup</code>, the tool schema, and the application <code class="notranslate">tool_map</code>.</li>
+<li>Do not submit API keys or complete private request headers.</li>
+</ul>
+<p dir="auto">Create <code class="notranslate">02_tools_agents_and_safety_homework_submission.ipynb</code>.</p>
+<h2 dir="auto">Part A — Inspect the real tool contract</h2>
+<ol dir="auto">
+<li>Find event <code class="notranslate">us6000pjqz</code> in the USGS JSONL file.</li>
+<li>Record its <code class="notranslate">place</code>, <code class="notranslate">magnitude</code>, <code class="notranslate">depth_km</code>, and <code class="notranslate">status</code> directly from the file.</li>
+<li>Explain the difference between:
+<ul dir="auto">
+<li>a tool schema;</li>
+<li>a Python implementation;</li>
+<li>an application allowlist.</li>
+</ul>
+</li>
+<li>Confirm that the published schema accepts exactly one string argument named <code class="notranslate">event_id</code> and rejects additional properties.</li>
+</ol>
+<h2 dir="auto">Part B — Complete one accepted tool loop</h2>
+<p dir="auto">Use this request:</p>
+<blockquote>
+<p dir="auto">Use the earthquake lookup tool to report the place, magnitude, depth, and review status for USGS event us6000pjqz. Do not guess missing fields.</p>
+</blockquote>
+<ol dir="auto">
+<li>Send the request with the <code class="notranslate">earthquake_lookup</code> tool schema.</li>
+<li>Capture the model-proposed tool name and raw argument string.</li>
+<li>Before executing anything, check all of the following in application code:
+<ul dir="auto">
+<li>the tool name exists in <code class="notranslate">tool_map</code>;</li>
+<li>the arguments parse as a JSON object;</li>
+<li>the argument keys are exactly <code class="notranslate">{"event_id"}</code>;</li>
+<li><code class="notranslate">event_id</code> is a non-empty string;</li>
+<li>the value contains only a reasonable USGS-style identifier, such as letters and digits.</li>
+</ul>
+</li>
+<li>Execute <code class="notranslate">earthquake_lookup</code> only after all checks pass.</li>
+<li>Limit the tool-result text before adding it to the model context.</li>
+<li>Append the assistant tool proposal and the <code class="notranslate">tool</code> result message to the conversation.</li>
+<li>Ask the model for the final answer.</li>
+<li>Verify the final answer against the real JSONL row. Identify every field that is supported by the tool result.</li>
+</ol>
+<p dir="auto">Create a trace table:</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>stage</th>
+<th>input summary</th>
+<th>decision</th>
+<th>output summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>model proposal</td>
+<td></td>
+<td>proposed only</td>
+<td></td>
+</tr>
+<tr>
+<td>schema/domain validation</td>
+<td></td>
+<td>accept/reject</td>
+<td></td>
+</tr>
+<tr>
+<td>tool execution</td>
+<td></td>
+<td>success/error</td>
+<td></td>
+</tr>
+<tr>
+<td>final response</td>
+<td></td>
+<td>supported/unsupported</td>
+<td></td>
+</tr>
+</tbody>
+</table></markdown-accessiblity-table>
+<h2 dir="auto">Part C — Test three distinct failure boundaries</h2>
+<p dir="auto">Run these cases without weakening your validator:</p>
+<ol dir="auto">
+<li><strong>Unknown tool:</strong> a proposed tool named <code class="notranslate">delete_earthquake_record</code>.</li>
+<li><strong>Extra argument:</strong> <code class="notranslate">earthquake_lookup</code> with <code class="notranslate">{"event_id": "us6000pjqz", "path": "/etc/passwd"}</code>.</li>
+<li><strong>Valid shape, missing record:</strong> <code class="notranslate">earthquake_lookup</code> with <code class="notranslate">{"event_id": "notarealusgsid"}</code>.</li>
+</ol>
+<p dir="auto">For each case, record:</p>
+<ul dir="auto">
+<li>the earliest boundary that should handle it;</li>
+<li>the observed exception or rejection category;</li>
+<li>whether the tool implementation ran;</li>
+<li>what message, if any, is safe to return to the model or user.</li>
+</ul>
+<p dir="auto">Explain why these are three different failures: allowlist failure, argument-validation failure, and tool/data failure.</p>
+<h2 dir="auto">Optional extension — MCP</h2>
+<p dir="auto">Call the local read-only earthquake MCP server for <code class="notranslate">us6000pjqz</code> and the missing ID. Compare MCP discovery and result envelopes with the direct Python tool loop. Discovery does not grant authorization.</p>
+<p dir="auto">This extension is not required for full credit.</p>
+<h2 dir="auto">Hints</h2>
+<details>
+<summary>Hint 1 — A proposal is not an action</summary>
+<p dir="auto">The first model response may contain <code class="notranslate">tool_calls</code>, but no Python function has run. Execution begins only when application code resolves an allowed name and invokes the mapped callable.</p>
+</details>
+<details>
+<summary>Hint 2 — Reject extra keys</summary>
+<p dir="auto">After <code class="notranslate">json.loads</code>, compare <code class="notranslate">set(arguments)</code> with <code class="notranslate">{"event_id"}</code>. Checking only that <code class="notranslate">event_id</code> exists would still allow an attacker-controlled <code class="notranslate">path</code> argument.</p>
+</details>
+<details>
+<summary>Hint 3 — Keep errors at the correct layer</summary>
+<p dir="auto">An unknown tool should fail before argument parsing. An extra key should fail before execution. A well-formed but unknown event ID reaches the read-only tool and should return a controlled not-found error.</p>
+</details>
+<details>
+<summary>Hint 4 — Bound tool output</summary>
+<p dir="auto">The classroom row is small, but write the code as if a tool could return thousands of lines. Truncate or summarize before returning untrusted content to the model.</p>
+</details>
+<h2 dir="auto">What to submit</h2>
+<p dir="auto">Submit the completed notebook containing:</p>
+<ul dir="auto">
+<li>the real USGS row fields used for verification;</li>
+<li>your validation function;</li>
+<li>one complete accepted tool-loop trace;</li>
+<li>a three-row failure table;</li>
+<li>the final supported answer;</li>
+<li>one residual risk that remains after validation;</li>
+<li>no credentials or sensitive paths beyond the deliberately rejected fixture.</li>
+</ul>
+<h2 dir="auto">Rubric (10 points)</h2>
+<ul dir="auto">
+<li><strong>Tool contract and real data (2):</strong> schema, implementation, allowlist, and USGS reference are distinguished correctly.</li>
+<li><strong>Complete accepted loop (3):</strong> proposal, validation, bounded execution, tool message, and final response are all present.</li>
+<li><strong>Failure-boundary tests (3):</strong> all three cases are handled at the correct layer without unauthorized execution.</li>
+<li><strong>Evidence and trace quality (1):</strong> decisions and outputs are recorded clearly and checked against the USGS row.</li>
+<li><strong>Residual risk and safe submission (1):</strong> one meaningful risk is discussed and no credential is exposed.</li>
+</ul>
+    </article>
     <a class="button" href="https://raw.githubusercontent.com/FCMeng/wattai-returning-students/2026-Fall/llm_agents_and_video_analysis/homework/02_tools_agents_and_safety_homework.md" download>Download assignment</a>
   </main>
   <footer><div class="wrap"><a href="../">Course materials</a> · <a href="../../">All courses</a></div></footer>

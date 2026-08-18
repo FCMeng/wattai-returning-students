@@ -3,23 +3,133 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Homework for Short-Video Analysis and Evaluation">
-  <title>Homework: Short-Video Analysis and Temporal Evaluation</title>
+  <meta name="description" content="Homework: Evidence-Based Video Evaluation">
+  <title>Homework: Evidence-Based Video Evaluation</title>
   <link rel="stylesheet" href="../../assets/style.css">
 </head>
 <body>
   <header><div class="wrap"><div class="eyebrow">Watt AI (INNO-4990) · Fall 2026</div><h1>Homework</h1><p>Short-video analysis and evaluation</p></div></header>
   <main class="wrap assignment">
     <a class="back-link" href="../">← Back to course materials</a>
-    <h1>Short-Video Analysis and Temporal Evaluation</h1>
-    <p>Run one controlled live comparison or agent/video failure matrix. Submit configuration without secrets, structured outcomes, one success, one failure, and a limitation.</p>
-    <h2>Rubric (10 points)</h2>
-    <ul>
-      <li>Correct request, authority, or evaluation contract: 4 points</li>
-      <li>Controlled and reproducible comparison: 2 points</li>
-      <li>Evidence and redacted presentation: 2 points</li>
-      <li>Failure analysis and residual risk: 2 points</li>
-    </ul>
+    <article class="assignment-body">
+<h1 dir="auto">Homework: Evidence-Based Video Evaluation</h1>
+<h2 dir="auto">Goal</h2>
+<p dir="auto">Evaluate two live analyses of the supplied NASA video at the syntax, schema, temporal, and visible-evidence layers. Then revise the prompt once and test whether the change addresses a specific observed failure. Expected working time: <strong>75–90 minutes</strong>.</p>
+<h2 dir="auto">Before you begin</h2>
+<ul dir="auto">
+<li>Connect to the Clemson network or CUVPN.</li>
+<li>Complete <code class="notranslate">notebooks/00_setup_and_diagnostics.ipynb</code> and Lecture 03.</li>
+<li>Use the supplied <code class="notranslate">assets/nasa_three_pacific_hurricanes.mp4</code> only.</li>
+<li>Use <code class="notranslate">qwen3-omni-30b-a3b</code> for both required analyses.</li>
+<li>Read <code class="notranslate">assets/video_ground_truth.json</code> and its <code class="notranslate">annotation_policy</code> before scoring.</li>
+<li>Do not upload private, student, or unapproved video.</li>
+</ul>
+<p dir="auto">Create <code class="notranslate">03_video_analysis_homework_submission.ipynb</code>.</p>
+<h2 dir="auto">Part A — Validate the media and reference</h2>
+<ol dir="auto">
+<li>Run <code class="notranslate">validate_video_path()</code> on the NASA MP4.</li>
+<li>Record the resolved filename, MIME type, byte size, and the 44-second reference duration.</li>
+<li>Read the three human-authored reference events.</li>
+<li>In one sentence, explain why storm names and categories are metadata rather than pixel-only observations.</li>
+<li>Do not modify the reference after seeing model output.</li>
+</ol>
+<h2 dir="auto">Part B — Run two model configurations</h2>
+<p dir="auto">Use the same video, prompt, model, and <code class="notranslate">temperature=0.1</code> in both conditions:</p>
+<ol dir="auto">
+<li><strong>Non-thinking:</strong> <code class="notranslate">enable_thinking=False</code>, <code class="notranslate">max_tokens=1200</code>.</li>
+<li><strong>Thinking:</strong> <code class="notranslate">enable_thinking=True</code>, <code class="notranslate">max_tokens=4096</code>.</li>
+</ol>
+<p dir="auto">For each condition:</p>
+<ol dir="auto">
+<li>Save the returned analysis object.</li>
+<li>Confirm that the top level contains <code class="notranslate">summary</code>, <code class="notranslate">events</code>, and <code class="notranslate">uncertainties</code>.</li>
+<li>Run <code class="notranslate">validate_video_analysis()</code>.</li>
+<li>Record whether parsing and schema validation passed.</li>
+<li>Count predicted events and list the uncertainty statements.</li>
+</ol>
+<p dir="auto">The larger thinking budget is required because reasoning and final JSON share the newly generated token allowance. Do not interpret a longer response as evidence of correctness.</p>
+<h2 dir="auto">Part C — Audit time and visible support</h2>
+<p dir="auto">For each configuration, create one row for every reference event and every unmatched predicted event:</p>
+<markdown-accessiblity-table><table role="table">
+<thead>
+<tr>
+<th>condition</th>
+<th>reference event</th>
+<th>predicted event</th>
+<th align="right">temporal IoU</th>
+<th>match category</th>
+<th>visible support</th>
+<th>reviewer note</th>
+</tr>
+</thead>
+</table></markdown-accessiblity-table>
+<p dir="auto">Use <code class="notranslate">temporal_iou()</code> to identify candidate temporal matches. Then make a separate human judgment about the description and evidence.</p>
+<p dir="auto">Use these categories:</p>
+<ul dir="auto">
+<li><strong>matched:</strong> reasonable temporal overlap and compatible visible event;</li>
+<li><strong>missing:</strong> a reference event has no suitable prediction;</li>
+<li><strong>extra:</strong> a prediction has no reference counterpart;</li>
+<li><strong>shifted:</strong> the event is plausible but its time range is materially displaced;</li>
+<li><strong>unsupported:</strong> the wording claims identity, category, intent, causality, speech, or another detail not established by visible evidence.</li>
+</ul>
+<p dir="auto">Answer these questions:</p>
+<ul dir="auto">
+<li>Did valid JSON correspond to a fully supported answer?</li>
+<li>Which event was hardest to align, and why?</li>
+<li>Did either response use timestamps that appear more precise than the evidence allows?</li>
+<li>Did the thinking configuration reduce, preserve, or introduce unsupported claims?</li>
+<li>What can temporal IoU detect, and what must remain a semantic or human judgment?</li>
+</ul>
+<h2 dir="auto">Part D — Revise one prompt and rerun</h2>
+<p dir="auto">Choose one failure observed in Part C. Add a short instruction addressing that failure. For example:</p>
+<blockquote>
+<p dir="auto">Describe only visible cloud systems and the day/night transition. Do not name storms, infer categories, causes, intent, or impacts. Treat timestamps as estimates and state what cannot be established visually.</p>
+</blockquote>
+<ol dir="auto">
+<li>Append your revision to <code class="notranslate">VIDEO_ANALYSIS_PROMPT</code>.</li>
+<li>Rerun the <strong>non-thinking</strong> condition only, with the same model and token budget.</li>
+<li>Repeat the relevant audit rows.</li>
+<li>State whether the targeted failure improved, stayed the same, or became worse.</li>
+<li>Identify one tradeoff or remaining limitation. A prompt can reduce a behavior without guaranteeing its removal.</li>
+</ol>
+<h2 dir="auto">Hints</h2>
+<details>
+<summary>Hint 1 — Keep structure and truth separate</summary>
+<p dir="auto"><code class="notranslate">validate_video_analysis()</code> checks required fields, types, chronology, and valid ranges. It cannot determine whether a hurricane name, category, or causal claim is visible in the pixels.</p>
+</details>
+<details>
+<summary>Hint 2 — Match before interpreting</summary>
+<p dir="auto">For each reference interval, calculate temporal IoU with every predicted interval and inspect the highest-overlap candidate. Do not accept the candidate until its description also matches the visible event.</p>
+</details>
+<details>
+<summary>Hint 3 — Treat zero overlap carefully</summary>
+<p dir="auto">A zero-IoU prediction may be missing, extra, or badly shifted. Read the descriptions and inspect the video rather than deciding from the number alone.</p>
+</details>
+<details>
+<summary>Hint 4 — Thinking output budget</summary>
+<p dir="auto">If a thinking request contains reasoning but no final JSON answer, the generated-token budget may have been exhausted. Use <code class="notranslate">max_tokens=4096</code> for this classroom experiment.</p>
+</details>
+<h2 dir="auto">What to submit</h2>
+<p dir="auto">Submit the completed notebook containing:</p>
+<ul dir="auto">
+<li>the local media/reference checks;</li>
+<li>both required analysis objects;</li>
+<li>parsing and schema results;</li>
+<li>the completed temporal and visible-support audit table;</li>
+<li>answers to all five Part C questions;</li>
+<li>the revised prompt, rerun, and before/after judgment;</li>
+<li>one remaining limitation;</li>
+<li>no private media, API key, or hidden reasoning text.</li>
+</ul>
+<h2 dir="auto">Rubric (10 points)</h2>
+<ul dir="auto">
+<li><strong>Media, model, and structured-output checks (2):</strong> approved asset and required configurations are used and validated.</li>
+<li><strong>Temporal evaluation (2):</strong> candidate matches and IoU values are calculated and categorized transparently.</li>
+<li><strong>Visible-evidence audit (3):</strong> missing, extra, shifted, and unsupported content are distinguished using the annotation policy.</li>
+<li><strong>Prompt revision experiment (2):</strong> one observed failure motivates a controlled rerun and evidence-based comparison.</li>
+<li><strong>Responsible reporting (1):</strong> uncertainty and limitations are stated without exposing credentials, private media, or hidden reasoning.</li>
+</ul>
+    </article>
     <a class="button" href="https://raw.githubusercontent.com/FCMeng/wattai-returning-students/2026-Fall/llm_agents_and_video_analysis/homework/03_video_analysis_homework.md" download>Download assignment</a>
   </main>
   <footer><div class="wrap"><a href="../">Course materials</a> · <a href="../../">All courses</a></div></footer>

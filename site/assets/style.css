@@ -117,6 +117,17 @@ main { padding: 38px 0 70px; }
 .assignment h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--ink); }
 .assignment h2 { margin-top: 32px; }
 .assignment li { margin-bottom: 8px; }
+.assignment-body { margin-bottom: 26px; }
+.assignment-body h1 { margin-top: 0; }
+.assignment-body h2 { padding-top: 8px; border-bottom: 1px solid var(--line); padding-bottom: 7px; }
+.assignment-body h3 { margin-top: 26px; }
+.assignment-body table { width: 100%; margin: 18px 0 24px; border-collapse: collapse; font-size: .95rem; }
+.assignment-body th, .assignment-body td { padding: 9px 11px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+.assignment-body th { background: var(--blue-soft); color: var(--ink); }
+.assignment-body blockquote { margin: 18px 0; padding: 10px 18px; color: var(--muted); background: #f1f5f9; border-left: 4px solid var(--blue); }
+.assignment-body details { margin: 12px 0; padding: 10px 14px; background: white; border: 1px solid var(--line); border-radius: 9px; }
+.assignment-body summary { color: var(--blue); font-weight: 750; cursor: pointer; }
+.assignment-body details > :last-child { margin-bottom: 2px; }
 .back-link { display: inline-block; margin-bottom: 24px; font-weight: 700; }
 footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); background: white; }
 code { background: #edf1f5; padding: 2px 5px; border-radius: 4px; }
@@ -126,4 +137,6 @@ code { background: #edf1f5; padding: 2px 5px; border-radius: 4px; }
   .hero-grid, .course-hero { grid-template-columns: 1fr; gap: 28px; }
   .brand-mark, .brand-mark.compact { width: 170px; height: 170px; }
   .course-code { display: block; margin-top: 8px; }
+  .assignment-body { overflow-wrap: anywhere; }
+  .assignment-body table { display: block; overflow-x: auto; }
 }
