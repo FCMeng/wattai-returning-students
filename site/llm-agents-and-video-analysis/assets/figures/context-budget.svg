@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="230" viewBox="0 0 960 230" role="img" aria-labelledby="title desc">
+  <title id="title">Context-window budget</title>
+  <desc id="desc">The finite context window is shared among system instructions, conversation history, tool schemas and results, retrieved evidence, and reserved output space.</desc>
+  <style>
+    text{font:14px system-ui,sans-serif;fill:#172033}.label{font-weight:600}.outline{fill:none;stroke:#334155;stroke-width:2}.a{fill:#bfdbfe}.b{fill:#c7d2fe}.c{fill:#fde68a}.d{fill:#bbf7d0}.e{fill:#fecaca}
+    @media(prefers-color-scheme:dark){text{fill:#e5e7eb}.outline{stroke:#cbd5e1}.a{fill:#1e3a8a}.b{fill:#3730a3}.c{fill:#78350f}.d{fill:#14532d}.e{fill:#7f1d1d}}
+  </style>
+  <text class="label" x="40" y="35">One finite context window</text>
+  <rect class="a" x="40" y="60" width="165" height="75"/><rect class="b" x="205" y="60" width="250" height="75"/><rect class="c" x="455" y="60" width="170" height="75"/><rect class="d" x="625" y="60" width="175" height="75"/><rect class="e" x="800" y="60" width="120" height="75"/><rect class="outline" x="40" y="60" width="880" height="75"/>
+  <text x="122" y="92" text-anchor="middle">instructions</text><text x="330" y="92" text-anchor="middle">conversation history</text><text x="540" y="92" text-anchor="middle">tools + results</text><text x="712" y="92" text-anchor="middle">retrieved evidence</text><text x="860" y="88" text-anchor="middle">reserved</text><text x="860" y="108" text-anchor="middle">output</text>
+  <text x="40" y="175">If inputs grow, output space shrinks or old information must be removed/compacted.</text>
+  <text x="40" y="201">Compaction is lossy: preserve goals, decisions, evidence, constraints, and unresolved risks.</text>
+</svg>

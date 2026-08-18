@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="315" viewBox="0 0 960 315" role="img" aria-labelledby="title desc">
+  <title id="title">Video-analysis pipeline</title>
+  <desc id="desc">A local video is validated, encoded, sent to a video-capable model, converted to sampled visual evidence, returned as JSON, checked against a schema, and reviewed by a person.</desc>
+  <style>
+    text{font:14px system-ui,sans-serif;fill:#172033}.label{font-weight:600}.small{font-size:12px;fill:#475569}.box{fill:#eff6ff;stroke:#2563eb;stroke-width:2}.check{fill:#ecfdf5;stroke:#059669;stroke-width:2}.review{fill:#fef3c7;stroke:#d97706;stroke-width:2}.arrow{stroke:#334155;stroke-width:2.2;fill:none;marker-end:url(#a)}
+    @media(prefers-color-scheme:dark){text{fill:#e5e7eb}.small{fill:#cbd5e1}.box{fill:#172554}.check{fill:#064e3b}.review{fill:#78350f}.arrow{stroke:#cbd5e1}}
+  </style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#334155"/></marker></defs>
+  <rect class="box" x="25" y="90" width="140" height="80" rx="10"/><text class="label" x="95" y="120" text-anchor="middle">Local MP4</text><text class="small" x="95" y="145" text-anchor="middle">20–30 seconds</text>
+  <rect class="check" x="205" y="90" width="140" height="80" rx="10"/><text class="label" x="275" y="120" text-anchor="middle">Validate</text><text class="small" x="275" y="143" text-anchor="middle">path · type · size</text>
+  <rect class="box" x="385" y="90" width="140" height="80" rx="10"/><text class="label" x="455" y="120" text-anchor="middle">Encode</text><text class="small" x="455" y="143" text-anchor="middle">base64 data URL</text>
+  <rect class="box" x="565" y="55" width="165" height="150" rx="10"/><text class="label" x="647" y="88" text-anchor="middle">Video model</text><rect x="587" y="108" width="28" height="28" fill="#93c5fd"/><rect x="625" y="108" width="28" height="28" fill="#60a5fa"/><rect x="663" y="108" width="28" height="28" fill="#3b82f6"/><text class="small" x="647" y="165" text-anchor="middle">samples/represents frames</text><text class="small" x="647" y="185" text-anchor="middle">may miss brief events</text>
+  <rect class="check" x="770" y="55" width="165" height="70" rx="10"/><text class="label" x="852" y="84" text-anchor="middle">Validate JSON</text><text class="small" x="852" y="105" text-anchor="middle">shape, types, ordering</text>
+  <rect class="review" x="770" y="165" width="165" height="80" rx="10"/><text class="label" x="852" y="195" text-anchor="middle">Human review</text><text class="small" x="852" y="218" text-anchor="middle">evidence, omissions, time</text>
+  <path class="arrow" d="M165 130 H205"/><path class="arrow" d="M345 130 H385"/><path class="arrow" d="M525 130 H565"/><path class="arrow" d="M730 90 H770"/><path class="arrow" d="M852 125 V165"/>
+  <text x="480" y="285" text-anchor="middle">Syntactically valid output is not the same as a visually grounded conclusion.</text>
+</svg>

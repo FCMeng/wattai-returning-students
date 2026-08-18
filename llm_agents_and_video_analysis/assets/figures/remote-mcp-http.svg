@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">Remote MCP call over Streamable HTTP</title>
+  <desc id="desc">A course notebook connects over HTTPS to the public DeepWiki MCP endpoint, discovers and validates a read-only tool schema, then requests the wiki structure of a public GitHub repository. A trust-boundary line separates the student environment from the external service.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#234f7d"/>
+    </marker>
+    <style>
+      .heading { font: 700 26px Arial, sans-serif; fill: #17324d; }
+      .label { font: 700 20px Arial, sans-serif; fill: #17324d; }
+      .body { font: 17px Arial, sans-serif; fill: #263746; }
+      .small { font: 15px Arial, sans-serif; fill: #425466; }
+      .box { stroke: #234f7d; stroke-width: 2.5; rx: 14; }
+      .flow { stroke: #234f7d; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1200" height="430" fill="#ffffff"/>
+  <text x="600" y="42" text-anchor="middle" class="heading">One MCP protocol, a different transport and trust boundary</text>
+
+  <rect x="45" y="100" width="250" height="205" class="box" fill="#eaf4ff"/>
+  <text x="170" y="140" text-anchor="middle" class="label">Student notebook</text>
+  <text x="70" y="180" class="body">1. Connect to approved URL</text>
+  <text x="70" y="215" class="body">2. List advertised tools</text>
+  <text x="70" y="250" class="body">3. Check name + schema</text>
+  <text x="70" y="285" class="body">4. Bound returned text</text>
+
+  <line x1="350" y1="76" x2="350" y2="350" stroke="#b04444" stroke-width="3" stroke-dasharray="10 8"/>
+  <text x="350" y="377" text-anchor="middle" class="small" fill="#8a2d2d">network / trust boundary</text>
+
+  <rect x="440" y="100" width="300" height="205" class="box" fill="#fff4db"/>
+  <text x="590" y="140" text-anchor="middle" class="label">DeepWiki MCP endpoint</text>
+  <text x="590" y="173" text-anchor="middle" class="small">https://mcp.deepwiki.com/mcp</text>
+  <rect x="490" y="205" width="200" height="62" rx="9" fill="#ffffff" stroke="#8f6b18" stroke-width="2"/>
+  <text x="590" y="232" text-anchor="middle" class="body">read_wiki_structure</text>
+  <text x="590" y="255" text-anchor="middle" class="small">repoName: string</text>
+
+  <rect x="875" y="100" width="280" height="205" class="box" fill="#edf8ee"/>
+  <text x="1015" y="140" text-anchor="middle" class="label">Public repository</text>
+  <text x="1015" y="176" text-anchor="middle" class="body">modelcontextprotocol/</text>
+  <text x="1015" y="204" text-anchor="middle" class="body">python-sdk</text>
+  <text x="1015" y="247" text-anchor="middle" class="small">Public documentation only</text>
+  <text x="1015" y="274" text-anchor="middle" class="small">No student credential sent</text>
+
+  <path d="M295 174 L438 174" class="flow"/>
+  <text x="367" y="155" text-anchor="middle" class="small">HTTPS</text>
+  <text x="367" y="199" text-anchor="middle" class="small">Streamable HTTP</text>
+  <path d="M740 210 L873 210" class="flow"/>
+  <text x="807" y="190" text-anchor="middle" class="small">read-only lookup</text>
+
+  <rect x="403" y="337" width="620" height="60" rx="12" fill="#f6f0ff" stroke="#7654a5" stroke-width="2"/>
+  <text x="713" y="363" text-anchor="middle" class="body">Discovery describes capability; it does not grant authority or establish trust.</text>
+  <text x="713" y="387" text-anchor="middle" class="small">Allowlist the tool, validate the live schema, check errors, and treat results as external data.</text>
+</svg>

@@ -1,0 +1,26 @@
+{
+  "video_id": "nasa-svs-30628",
+  "duration_seconds": 44,
+  "source_url": "https://svs.gsfc.nasa.gov/30628/",
+  "annotation_policy": "Human review of visible transitions, cross-checked against NASA's official item description. Storm names and categories are metadata, not pixel-only inferences.",
+  "events": [
+    {
+      "start_seconds": 0,
+      "end_seconds": 20,
+      "description": "Nighttime mosaic of three Pacific hurricanes.",
+      "evidence": "Three spiral cloud systems appear across a dark satellite mosaic."
+    },
+    {
+      "start_seconds": 20,
+      "end_seconds": 24,
+      "description": "Transition from nighttime to daylight imagery.",
+      "evidence": "The dark view changes into a natural-color daytime mosaic."
+    },
+    {
+      "start_seconds": 24,
+      "end_seconds": 44,
+      "description": "Daylight mosaic of the same three Pacific hurricanes.",
+      "evidence": "Three organized spiral cloud systems remain visible in daylight."
+    }
+  ]
+}

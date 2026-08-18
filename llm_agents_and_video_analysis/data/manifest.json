@@ -1,0 +1,21 @@
+{
+  "source": {
+    "name": "USGS Earthquake Catalog",
+    "organization": "U.S. Geological Survey",
+    "query_url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-01-01&endtime=2025-02-01&minmagnitude=4.5&orderby=time-asc",
+    "api_documentation": "https://earthquake.usgs.gov/fdsnws/event/1/",
+    "access_date": "2026-07-24"
+  },
+  "transform_version": 1,
+  "counts": {
+    "earthquakes": 655
+  },
+  "files": [
+    {
+      "path": "llm_agents_and_video_analysis/data/usgs_earthquakes_2025_01.jsonl",
+      "bytes": 195114,
+      "sha256": "e3c1b1d6e6334f820b13d28d3265ffe27d3d8666b02157bd81d49871b1c3c7ac"
+    }
+  ],
+  "source_file_sha256": "b6185e7a3ab1fc77b40247211ea66023fc0fd5ae364162c0e5134631e599e3c2"
+}

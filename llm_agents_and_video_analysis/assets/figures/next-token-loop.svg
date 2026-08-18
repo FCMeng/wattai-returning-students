@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="300" viewBox="0 0 960 300" role="img" aria-labelledby="title desc">
+  <title id="title">Next-token generation loop</title>
+  <desc id="desc">Input tokens produce a probability distribution. A token is selected and appended to the input, then the cycle repeats.</desc>
+  <style>
+    text{font:16px system-ui,sans-serif;fill:#172033}.label{font-weight:600}.small{font-size:13px;fill:#475569}.box{fill:#eff6ff;stroke:#2563eb;stroke-width:2}.choice{fill:#fef3c7;stroke:#d97706;stroke-width:2}.arrow{stroke:#334155;stroke-width:2.5;fill:none;marker-end:url(#a)}
+    @media(prefers-color-scheme:dark){text{fill:#e5e7eb}.small{fill:#cbd5e1}.box{fill:#172554}.choice{fill:#78350f}.arrow{stroke:#cbd5e1}}
+  </style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#334155"/></marker></defs>
+  <rect class="box" x="35" y="85" width="215" height="95" rx="12"/><text class="label" x="142" y="122" text-anchor="middle">Current tokens</text><text class="small" x="142" y="150" text-anchor="middle">“The sky looks …”</text>
+  <rect class="box" x="330" y="85" width="220" height="95" rx="12"/><text class="label" x="440" y="122" text-anchor="middle">Model forward pass</text><text class="small" x="440" y="150" text-anchor="middle">scores every next token</text>
+  <rect class="choice" x="630" y="55" width="280" height="155" rx="12"/><text class="label" x="770" y="88" text-anchor="middle">Probability distribution</text><text x="675" y="123">blue</text><text x="860" y="123" text-anchor="end">0.61</text><text x="675" y="151">bright</text><text x="860" y="151" text-anchor="end">0.12</text><text x="675" y="179">different</text><text x="860" y="179" text-anchor="end">0.04</text>
+  <path class="arrow" d="M250 132 H330"/><path class="arrow" d="M550 132 H630"/>
+  <path class="arrow" d="M770 210 V255 H142 V180"/><text class="small" x="470" y="276" text-anchor="middle">select one token → append it → repeat until a stop condition</text>
+</svg>

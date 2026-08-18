@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="430" viewBox="0 0 960 430" role="img" aria-labelledby="title desc">
+  <title id="title">An MCP client discovers and calls a tool on a local server</title>
+  <desc id="desc">A notebook MCP client launches a local server over standard input and output, lists its earthquake lookup tool, calls the tool with a USGS event ID, and receives a structured result.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#243b53"/>
+    </marker>
+    <style>
+      .box{fill:#f5f9ff;stroke:#1f5a94;stroke-width:2}.server{fill:#f4fbf5;stroke:#2e7d32;stroke-width:2}
+      .data{fill:#fff8e6;stroke:#a86700;stroke-width:2}.label{font:700 21px sans-serif;fill:#102a43}
+      .body{font:16px sans-serif;fill:#243b53}.arrow{stroke:#243b53;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+      .step{font:700 15px sans-serif;fill:#7b341e}.note{font:15px sans-serif;fill:#334e68}
+    </style>
+  </defs>
+  <rect x="40" y="92" width="245" height="195" rx="18" class="box"/>
+  <text x="162" y="128" text-anchor="middle" class="label">Notebook MCP client</text>
+  <text x="65" y="165" class="body">1. Launch server process</text>
+  <text x="65" y="198" class="body">2. list_tools()</text>
+  <text x="65" y="231" class="body">3. call_tool(name, args)</text>
+  <text x="65" y="264" class="body">4. Check is_error</text>
+
+  <rect x="380" y="62" width="270" height="255" rx="18" class="server"/>
+  <text x="515" y="100" text-anchor="middle" class="label">Local MCP server</text>
+  <text x="405" y="139" class="body">Tool:</text>
+  <text x="405" y="170" class="body">lookup_usgs_earthquake</text>
+  <text x="405" y="209" class="body">Input schema:</text>
+  <text x="405" y="240" class="body">event_id: string</text>
+  <text x="405" y="279" class="body">Validates and reads data</text>
+
+  <rect x="745" y="112" width="175" height="155" rx="18" class="data"/>
+  <text x="832" y="149" text-anchor="middle" class="label">USGS snapshot</text>
+  <text x="770" y="188" class="body">Real event IDs</text>
+  <text x="770" y="219" class="body">Magnitude, place,</text>
+  <text x="770" y="245" class="body">depth, provenance</text>
+
+  <path d="M285 150 C325 150 340 130 380 130" class="arrow"/>
+  <text x="331" y="116" text-anchor="middle" class="step">JSON-RPC over stdio</text>
+  <path d="M380 260 C340 260 325 240 285 240" class="arrow"/>
+  <text x="332" y="292" text-anchor="middle" class="step">structured result</text>
+  <path d="M650 190 L745 190" class="arrow"/>
+  <text x="697" y="174" text-anchor="middle" class="step">read only</text>
+
+  <text x="480" y="370" text-anchor="middle" class="note">MCP standardizes discovery and transport; the application still decides which server and tool may run.</text>
+  <text x="480" y="400" text-anchor="middle" class="note">The model does not execute this tool by itself—the host or client performs the call.</text>
+</svg>

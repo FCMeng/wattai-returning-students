@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="270" viewBox="0 0 960 270" role="img" aria-labelledby="title desc">
+  <title id="title">Reference and model event timelines</title>
+  <desc id="desc">A human reference timeline is compared with a model timeline whose boundaries differ and whose brief event may be missing.</desc>
+  <style>
+    text{font:14px system-ui,sans-serif;fill:#172033}.label{font-weight:600}.axis{stroke:#334155;stroke-width:2}.tick{stroke:#64748b}.ref{fill:#93c5fd;stroke:#2563eb}.pred{fill:#bbf7d0;stroke:#059669}.miss{fill:none;stroke:#dc2626;stroke-width:2;stroke-dasharray:5 5}.small{font-size:12px;fill:#475569}
+    @media(prefers-color-scheme:dark){text{fill:#e5e7eb}.small{fill:#cbd5e1}.axis,.tick{stroke:#cbd5e1}.ref{fill:#1e3a8a}.pred{fill:#14532d}}
+  </style>
+  <text class="label" x="40" y="35">Compare event meaning and boundaries—not just JSON validity</text>
+  <text x="40" y="92">Human reference</text><text x="40" y="168">Model estimate</text>
+  <line class="axis" x1="175" y1="220" x2="925" y2="220"/>
+  <g class="small"><text x="175" y="247">0s</text><text x="325" y="247">5s</text><text x="475" y="247">10s</text><text x="625" y="247">15s</text><text x="775" y="247">20s</text><text x="910" y="247">25s</text></g>
+  <g class="tick"><line x1="175" y1="215" x2="175" y2="226"/><line x1="325" y1="215" x2="325" y2="226"/><line x1="475" y1="215" x2="475" y2="226"/><line x1="625" y1="215" x2="625" y2="226"/><line x1="775" y1="215" x2="775" y2="226"/><line x1="925" y1="215" x2="925" y2="226"/></g>
+  <rect class="ref" x="175" y="65" width="180" height="44" rx="6"/><text x="265" y="92" text-anchor="middle">enters</text><rect class="ref" x="385" y="65" width="270" height="44" rx="6"/><text x="520" y="92" text-anchor="middle">places object</text><rect class="ref" x="685" y="65" width="240" height="44" rx="6"/><text x="805" y="92" text-anchor="middle">exits</text>
+  <rect class="pred" x="205" y="141" width="180" height="44" rx="6"/><text x="295" y="168" text-anchor="middle">enters</text><rect class="pred" x="430" y="141" width="195" height="44" rx="6"/><text x="527" y="168" text-anchor="middle">places item</text><rect class="miss" x="685" y="141" width="240" height="44" rx="6"/><text class="small" x="805" y="168" text-anchor="middle">missing or uncertain event</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="350" viewBox="0 0 960 350" role="img" aria-labelledby="title desc">
+  <title id="title">Tool-using agent loop and trust boundary</title>
+  <desc id="desc">The model proposes a tool call. The application validates policy and arguments, executes an allowed tool, appends the result, and asks the model for a final response.</desc>
+  <style>
+    text{font:15px system-ui,sans-serif;fill:#172033}.label{font-weight:600}.small{font-size:13px;fill:#475569}.model{fill:#eff6ff;stroke:#2563eb;stroke-width:2}.app{fill:#ecfdf5;stroke:#059669;stroke-width:2}.tool{fill:#fef3c7;stroke:#d97706;stroke-width:2}.boundary{fill:none;stroke:#dc2626;stroke-width:2;stroke-dasharray:7 7}.arrow{stroke:#334155;stroke-width:2.5;fill:none;marker-end:url(#a)}
+    @media(prefers-color-scheme:dark){text{fill:#e5e7eb}.small{fill:#cbd5e1}.model{fill:#172554}.app{fill:#064e3b}.tool{fill:#78350f}.arrow{stroke:#cbd5e1}}
+  </style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#334155"/></marker></defs>
+  <rect class="model" x="45" y="95" width="210" height="90" rx="12"/><text class="label" x="150" y="130" text-anchor="middle">Model</text><text class="small" x="150" y="157" text-anchor="middle">proposes name + arguments</text>
+  <rect class="boundary" x="315" y="35" width="600" height="270" rx="18"/><text x="340" y="62" class="small">Application trust boundary</text>
+  <rect class="app" x="360" y="95" width="220" height="90" rx="12"/><text class="label" x="470" y="125" text-anchor="middle">Validate</text><text class="small" x="470" y="151" text-anchor="middle">allowlist · schema · policy</text><text class="small" x="470" y="171" text-anchor="middle">confirmation if sensitive</text>
+  <rect class="tool" x="665" y="95" width="205" height="90" rx="12"/><text class="label" x="767" y="130" text-anchor="middle">Execute tool</text><text class="small" x="767" y="157" text-anchor="middle">ordinary application code</text>
+  <path class="arrow" d="M255 140 H360"/><text class="small" x="307" y="126" text-anchor="middle">proposal</text><path class="arrow" d="M580 140 H665"/>
+  <path class="arrow" d="M767 185 V245 H470 V185"/><text class="small" x="620" y="269" text-anchor="middle">bounded tool result is appended to messages</text>
+  <path class="arrow" d="M360 170 C310 245,260 245,210 185"/><text class="small" x="275" y="286" text-anchor="middle">model gets another turn; model never executes the tool itself</text>
+</svg>

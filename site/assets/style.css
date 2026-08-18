@@ -1,0 +1,59 @@
+:root {
+  --ink: #172638;
+  --muted: #526477;
+  --blue: #174f82;
+  --blue-soft: #eaf4ff;
+  --orange: #b85c18;
+  --line: #d8e0e8;
+  --page: #f7f9fc;
+  --card: #ffffff;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--page);
+  font: 17px/1.65 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+a { color: var(--blue); }
+.wrap { width: min(1100px, calc(100% - 40px)); margin: 0 auto; }
+header {
+  padding: 64px 0 50px;
+  color: white;
+  background: linear-gradient(125deg, #12365a, #176a98);
+}
+header p { max-width: 760px; margin: 12px 0 0; color: #e5f2fb; }
+h1 { margin: 0; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.08; }
+h2 { margin-top: 0; font-size: 1.65rem; }
+main { padding: 38px 0 70px; }
+.eyebrow { margin-bottom: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #bde4fb; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; }
+.card {
+  padding: 26px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(28, 54, 79, .07);
+}
+.card p { color: var(--muted); }
+.tag { display: inline-block; margin: 0 6px 6px 0; padding: 4px 10px; border-radius: 999px; background: var(--blue-soft); color: var(--blue); font-size: .86rem; }
+.button {
+  display: inline-block;
+  margin: 8px 8px 0 0;
+  padding: 10px 15px;
+  color: white;
+  background: var(--blue);
+  border-radius: 9px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.button.secondary { color: var(--blue); background: var(--blue-soft); }
+.notice { margin: 28px 0; padding: 18px 22px; border-left: 5px solid var(--orange); background: #fff7ee; }
+.lesson-list { list-style: none; padding: 0; }
+.lesson-list li { margin: 14px 0; padding: 20px; background: white; border: 1px solid var(--line); border-radius: 12px; }
+.lesson-title { display: block; font-size: 1.15rem; font-weight: 750; }
+.downloads a { margin-right: 14px; }
+footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); background: white; }
+code { background: #edf1f5; padding: 2px 5px; border-radius: 4px; }
+

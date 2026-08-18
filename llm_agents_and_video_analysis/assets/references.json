@@ -1,0 +1,84 @@
+{
+  "references": [
+    {
+      "title": "RCD LLM Service",
+      "creator_or_organization": "Clemson Research Computing and Data",
+      "url": "https://docs.rcd.clemson.edu/llm/",
+      "accessed": "2026-07-22",
+      "role": "Service and capability contract",
+      "used_in_lectures": [
+        1,
+        2,
+        3
+      ],
+      "reuse": "Citation only; no documentation prose or images copied"
+    },
+    {
+      "title": "RCD Acceptable Use",
+      "creator_or_organization": "Clemson Research Computing and Data",
+      "url": "https://docs.rcd.clemson.edu/llm/acceptable_use/",
+      "accessed": "2026-07-22",
+      "role": "Responsible-use guidance",
+      "used_in_lectures": [
+        2,
+        3
+      ],
+      "reuse": "Citation only; no documentation prose or images copied"
+    },
+    {
+      "title": "OpenAI API Through RLS",
+      "creator_or_organization": "Clemson Research Computing and Data",
+      "url": "https://docs.rcd.clemson.edu/llm/usage/openai_api/",
+      "accessed": "2026-08-18",
+      "role": "RLS OpenAI gateway endpoint, accounting, and text request contract",
+      "used_in_lectures": [
+        1
+      ],
+      "reuse": "Citation only; no documentation prose or images copied"
+    },
+    {
+      "title": "GPT-5.6 model documentation",
+      "creator_or_organization": "OpenAI",
+      "url": "https://developers.openai.com/api/docs/models",
+      "accessed": "2026-08-18",
+      "role": "OpenAI-hosted model selection for the text-only gateway example",
+      "used_in_lectures": [
+        1
+      ],
+      "reuse": "Citation only; no documentation prose or images copied"
+    },
+    {
+      "title": "MCP Python SDK",
+      "creator_or_organization": "Model Context Protocol project",
+      "url": "https://github.com/modelcontextprotocol/python-sdk",
+      "accessed": "2026-08-18",
+      "role": "MCPServer, stdio and Streamable HTTP clients, tool discovery, and tool-call result contracts",
+      "used_in_lectures": [
+        2
+      ],
+      "reuse": "Citation only; example code and diagram are course-original"
+    },
+    {
+      "title": "Streamable HTTP transport specification",
+      "creator_or_organization": "Model Context Protocol project",
+      "url": "https://github.com/modelcontextprotocol/modelcontextprotocol/blob/main/docs/specification/2026-07-28/basic/transports/streamable-http.mdx",
+      "accessed": "2026-08-18",
+      "role": "Remote MCP endpoint and transport lifecycle contract",
+      "used_in_lectures": [
+        2
+      ],
+      "reuse": "Citation only; example code and diagram are course-original"
+    },
+    {
+      "title": "DeepWiki MCP",
+      "creator_or_organization": "Cognition",
+      "url": "https://docs.devin.ai/work-with-devin/deepwiki-mcp",
+      "accessed": "2026-08-18",
+      "role": "Public read-only remote MCP endpoint and repository-tool contract",
+      "used_in_lectures": [
+        2
+      ],
+      "reuse": "Citation only; no documentation prose or images copied"
+    }
+  ]
+}
