@@ -24,6 +24,18 @@ header {
   background: linear-gradient(125deg, #12365a, #176a98);
 }
 header p { max-width: 760px; margin: 12px 0 0; color: #e5f2fb; }
+.creator-byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  margin-top: 19px;
+  color: #d9edf9;
+  font-size: 1rem;
+}
+.creator-byline strong { color: white; }
+.alumni-mark { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+.tiger-paw { display: inline-block; width: 25px; height: 24px; object-fit: contain; }
 h1 { margin: 0; font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.08; }
 h2 { margin-top: 0; font-size: 1.65rem; }
 main { padding: 38px 0 70px; }

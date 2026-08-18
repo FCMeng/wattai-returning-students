@@ -3,8 +3,8 @@
 This repository is a student distribution of classroom materials for Fall
 2026. It is not the private authoring repository.
 
-The Watt Family Innovation Center logo is an institutional identifier and is
-not offered under any course-content or software license.
+The Watt Family Innovation Center logo and Clemson Tiger Paw are institutional
+identifiers and are not offered under any course-content or software license.
 
 Students may download and use these files for personal educational work in
 the course. Course-original material remains copyrighted by its author unless
