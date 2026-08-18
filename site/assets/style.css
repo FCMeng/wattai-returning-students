@@ -73,6 +73,39 @@ main { padding: 38px 0 70px; }
 .lesson-list li { margin: 14px 0; padding: 20px; background: white; border: 1px solid var(--line); border-radius: 12px; }
 .lesson-title { display: block; font-size: 1.15rem; font-weight: 750; }
 .downloads a { margin-right: 14px; }
+.resource-tabs { margin-top: 18px; }
+.tab-list {
+  display: flex;
+  gap: 6px;
+  border-bottom: 1px solid var(--line);
+}
+.tab-button {
+  margin: 0 0 -1px;
+  padding: 9px 16px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 9px 9px 0 0;
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+.tab-button:hover { color: var(--blue); background: var(--blue-soft); }
+.tab-button[aria-selected="true"] {
+  color: var(--blue);
+  background: white;
+  border-color: var(--line) var(--line) white;
+}
+.tab-button:focus-visible { outline: 3px solid #78b8e7; outline-offset: 2px; }
+.tab-panel { padding: 14px 2px 2px; }
+.tab-panel p { margin: 0 0 9px; }
+.tab-panel[hidden] { display: none; }
+.homework-label { font-weight: 750; color: var(--ink); }
+.assignment { max-width: 820px; }
+.assignment h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--ink); }
+.assignment h2 { margin-top: 32px; }
+.assignment li { margin-bottom: 8px; }
+.back-link { display: inline-block; margin-bottom: 24px; font-weight: 700; }
 footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); background: white; }
 code { background: #edf1f5; padding: 2px 5px; border-radius: 4px; }
 
