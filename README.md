@@ -1,8 +1,10 @@
-# WattAI Student Courses — Fall 2026
+# Watt AI (INNO-4990) — Fall 2026
 
-This public repository contains the student-facing editions of the WattAI
-courses. Each course is standalone: students may begin with the topic that
-matches their interests and background.
+<img src="site/assets/watt-family-innovation-center.png" alt="Watt Family Innovation Center, Clemson University logo" width="240">
+
+This public repository contains the student-facing materials for Watt AI
+(INNO-4990) at the Watt Family Innovation Center. Each course is standalone:
+students may begin with the topic that matches their interests and background.
 
 ## Available course
 
@@ -31,4 +33,3 @@ These materials are provided for classroom study. Course-original materials
 remain copyrighted by their author. Third-party datasets and media retain
 their original licenses and attribution; see each course's asset and data
 manifests before redistributing them.
-
