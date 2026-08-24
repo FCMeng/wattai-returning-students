@@ -113,6 +113,15 @@ main { padding: 38px 0 70px; }
 .tab-panel p { margin: 0 0 9px; }
 .tab-panel[hidden] { display: none; }
 .homework-label { font-weight: 750; color: var(--ink); }
+.due-date {
+  display: inline-block;
+  padding: 6px 11px;
+  color: #5c2600;
+  background: #ffe2c7;
+  border-left: 5px solid #f56600;
+  border-radius: 6px;
+  font-weight: 750;
+}
 .assignment { max-width: 820px; }
 .assignment h1 { font-size: clamp(2rem, 5vw, 3rem); color: var(--ink); }
 .assignment h2 { margin-top: 32px; }
