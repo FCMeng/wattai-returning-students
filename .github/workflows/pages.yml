@@ -31,6 +31,7 @@ jobs:
           mkdir -p site/llm-agents-and-video-analysis/downloads/homework
           cp llm_agents_and_video_analysis/notebooks/*.ipynb site/llm-agents-and-video-analysis/downloads/notebooks/
           cp llm_agents_and_video_analysis/homework/*.md site/llm-agents-and-video-analysis/downloads/homework/
+          cp llm_agents_and_video_analysis/requirements.txt site/llm-agents-and-video-analysis/downloads/requirements.txt
       - name: Upload the reviewed static site
         uses: actions/upload-pages-artifact@v4
         with:
