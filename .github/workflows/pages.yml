@@ -25,6 +25,12 @@ jobs:
         uses: actions/checkout@v6
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+      - name: Prepare individual downloads
+        run: |
+          mkdir -p site/llm-agents-and-video-analysis/downloads/notebooks
+          mkdir -p site/llm-agents-and-video-analysis/downloads/homework
+          cp llm_agents_and_video_analysis/notebooks/*.ipynb site/llm-agents-and-video-analysis/downloads/notebooks/
+          cp llm_agents_and_video_analysis/homework/*.md site/llm-agents-and-video-analysis/downloads/homework/
       - name: Upload the reviewed static site
         uses: actions/upload-pages-artifact@v4
         with:
@@ -32,4 +38,3 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
-
