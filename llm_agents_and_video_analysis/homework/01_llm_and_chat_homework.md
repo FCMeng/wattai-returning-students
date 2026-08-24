@@ -1,5 +1,7 @@
 # Homework: Decoding Controls and Conversation State
 
+**Due:** September 6, 2026
+
 ## Goal
 
 Use live Clemson RCD models to answer two concrete questions:

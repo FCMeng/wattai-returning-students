@@ -1,5 +1,7 @@
 # Homework: Evidence-Based Video Evaluation
 
+**Due:** September 20, 2026
+
 ## Goal
 
 Evaluate two live analyses of the supplied NASA video at the syntax, schema, temporal, and visible-evidence layers. Then revise the prompt once and test whether the change addresses a specific observed failure. Expected working time: **75–90 minutes**.

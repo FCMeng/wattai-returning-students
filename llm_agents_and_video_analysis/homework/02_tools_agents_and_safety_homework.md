@@ -1,5 +1,7 @@
 # Homework: Complete and Defend a Tool Loop
 
+**Due:** September 13, 2026
+
 ## Goal
 
 Complete a model → validation → tool → result → model loop using the real USGS earthquake snapshot supplied with the course. Then demonstrate that three different failures are stopped or reported at the correct boundary. Expected working time: **60–75 minutes**.
