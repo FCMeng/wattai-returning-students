@@ -32,6 +32,31 @@ jobs:
           cp llm_agents_and_video_analysis/notebooks/*.ipynb site/llm-agents-and-video-analysis/downloads/notebooks/
           cp llm_agents_and_video_analysis/homework/*.md site/llm-agents-and-video-analysis/downloads/homework/
           cp llm_agents_and_video_analysis/requirements.txt site/llm-agents-and-video-analysis/downloads/requirements.txt
+      - name: Add Cloudflare Web Analytics
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          fragment_path = Path("site/assets/cloudflare-web-analytics.html-fragment")
+          fragment = fragment_path.read_text(encoding="utf-8").strip()
+          token = "c3ed0143a2cd4cfeaeae994cafbc25fa"
+          pages = sorted(Path("site").rglob("*.html"))
+
+          for page in pages:
+              text = page.read_text(encoding="utf-8")
+              if text.count(token) > 1:
+                  raise RuntimeError(f"Duplicate analytics snippet in {page}")
+              if token not in text:
+                  if text.count("</body>") != 1:
+                      raise RuntimeError(f"Expected one closing body tag in {page}")
+                  text = text.replace("</body>", f"{fragment}\n</body>", 1)
+                  page.write_text(text, encoding="utf-8")
+
+          for page in pages:
+              if page.read_text(encoding="utf-8").count(token) != 1:
+                  raise RuntimeError(f"Analytics verification failed for {page}")
+          print(f"Analytics added to {len(pages)} HTML pages")
+          PY
       - name: Upload the reviewed static site
         uses: actions/upload-pages-artifact@v4
         with:
