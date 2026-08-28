@@ -85,6 +85,20 @@ main { padding: 38px 0 70px; }
 .lesson-list li { margin: 14px 0; padding: 20px; background: white; border: 1px solid var(--line); border-radius: 12px; }
 .lesson-title { display: block; font-size: 1.15rem; font-weight: 750; }
 .downloads a { margin-right: 14px; }
+.feedback-prompt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 7px 12px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  color: var(--muted);
+  background: #fff8ef;
+  border-left: 4px solid var(--orange);
+  border-radius: 7px;
+  font-size: .92rem;
+}
+.feedback-link { color: var(--blue); font-weight: 750; white-space: nowrap; }
 .resource-tabs { margin-top: 18px; }
 .tab-list {
   display: flex;
