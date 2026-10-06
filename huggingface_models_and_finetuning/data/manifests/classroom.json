@@ -1,0 +1,31 @@
+{
+  "counts": {
+    "evaluation": 250,
+    "removed": {
+      "ineligible": 49358
+    },
+    "train": 2000
+  },
+  "files": [
+    {
+      "bytes": 4274897,
+      "path": "data/classroom/sft_train.jsonl",
+      "sha256": "ef7ddcb40abc98d59add00c836c2fd5887357d4c16af72c86cbe476c7280b32c"
+    },
+    {
+      "bytes": 516623,
+      "path": "data/evaluation/sft_evaluation.jsonl",
+      "sha256": "6903477630135cceaba9102da9d1482d463093a69e1e7ee8380adfa7cc422baf"
+    }
+  ],
+  "profile": "classroom",
+  "seed": 2026,
+  "source": {
+    "license": "Apache-2.0",
+    "name": "OpenAssistant/oasst1",
+    "revision": "694bedf"
+  },
+  "split_unit": "message_tree_id",
+  "synthetic_allowed": false,
+  "transform_version": 1
+}

@@ -1,0 +1,29 @@
+# Course teaching stack (updated 2026-10-05). Python 3.10 or newer is required.
+torch==2.8.0
+torchvision==0.23.0
+transformers==5.17.0
+datasets==5.0.1
+accelerate==1.15.0
+peft==0.21.2
+trl==1.14.1
+safetensors>=0.6,<1
+
+# Multimodal preprocessing used by Lecture 01's Qwen3-Omni video lab.
+qwen-omni-utils==0.0.9
+soundfile==0.13.1
+
+# Four-bit QLoRA is a Linux/CUDA extension; ordinary LoRA does not require it.
+bitsandbytes==0.50.2; platform_system == "Linux"
+
+# Notebook and validation tools.
+jupyterlab==4.6.3
+nbformat==5.11.1
+nbclient==0.11.0
+nbconvert==7.17.1
+matplotlib>=3.8,<4
+pandas>=2.2,<4
+
+# The Qwen3-Omni video lab also needs ffmpeg on the system. FlashAttention 2
+# is recommended on supported CUDA systems but is not pinned here because it
+# must be compiled for the local CUDA/PyTorch toolchain; the notebook can use
+# PyTorch SDPA when FlashAttention 2 is unavailable.

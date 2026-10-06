@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Homework: Train and Reload a Real LoRA Adapter">
+  <title>Homework: Train and Reload a Real LoRA Adapter</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script src="../../assets/feedback.js" data-auto-button="true" data-material-id="huggingface-finetuning/homework-03" data-content-type="homework" data-page-title="Homework: Train and Reload a Real LoRA Adapter" defer></script>
+</head>
+<body>
+  <header><div class="wrap"><div class="eyebrow">Watt AI (INNO-4990) · Fall 2026</div><h1>Homework</h1><p>Supervised fine-tuning with LoRA and QLoRA</p></div></header>
+  <main class="wrap assignment">
+    <a class="back-link" href="../">← Back to course materials</a>
+    <article class="assignment-body">
+<h1>Homework: Train and Reload a Real LoRA Adapter</h1>
+<h2>Goal</h2>
+<p>Run a controlled PEFT experiment on real OpenAssistant records, save the adapter, and prove that a fresh process can reload it. Expected working time: <strong>90–120 minutes</strong> plus model download time.</p>
+<h2>Part A — Establish the configuration</h2>
+<p>Use the pinned SmolLM2-135M-Instruct model and the first 64 training rows after validation. Reserve the final 16 of those rows for validation. Configure LoRA on <code>q_proj</code>, <code>k_proj</code>, <code>v_proj</code>, and <code>o_proj</code> with rank 8, alpha 16, dropout 0.05, and bias <code>none</code>. Record seed, maximum length, microbatch, accumulation steps, learning rate, and optimizer-step count.</p>
+<h2>Part B — Inspect before training</h2>
+<p>Print the names of the first ten trainable parameters. Report trainable count, total count, percentage, and effective batch size. Assert that at least one parameter is trainable and that fewer than 5% of all parameters are trainable.</p>
+<h2>Part C — Train one controlled comparison</h2>
+<p>Train a baseline adapter for at least 5 optimizer steps. Train a second adapter that changes <strong>only rank</strong> from 8 to 16. Store both loss histories, wall time, peak CUDA memory when available, and directory size. Do not claim the lower training loss is the better general model.</p>
+<h2>Part D — Reload and test</h2>
+<p>In a fresh model object, reload each adapter with <code>is_trainable=False</code>. Use the same three held-out prompts and greedy <code>max_new_tokens=80</code>. Save outputs in a paired table. Explain whether the short run demonstrates mechanics, behavior change, or reliable quality improvement.</p>
+<h2>Optional QLoRA extension</h2>
+<p>On Linux/CUDA, repeat rank 8 with Qwen2.5-1.5B-Instruct. Pass <code>BitsAndBytesConfig</code> during <code>from_pretrained</code>, call <code>prepare_model_for_kbit_training</code>, and report base-layer dtypes. This extension is optional.</p>
+<h2>Hints</h2>
+<details><summary>Dataset format</summary>Use conversational `prompt` and `completion` columns. Completion-only loss is the default for prompt-completion data, but set it explicitly in `SFTConfig`.</details>
+
+<details><summary>One-variable comparison</summary>Write both configurations to JSON and compare them. Aside from output directory and rank-dependent alpha if explicitly justified, the dictionaries should match.</details>
+
+<details><summary>Reload test</summary>Construct a fresh `AutoModelForCausalLM` at the pinned revision, then call `PeftModel.from_pretrained`.</details>
+
+<h2>Suggested workflow</h2>
+<ol>
+<li>Freeze the shared data, decoding, and training settings in a configuration record.</li>
+<li>Build rank-8 and rank-16 PEFT configurations and verify trainable parameters.</li>
+<li>Train both adapters while changing only the requested rank variable.</li>
+<li>Save and reload each adapter into a fresh pinned base model.</li>
+<li>Compare paired outputs and resources, then write a calibrated conclusion.</li>
+</ol>
+<h2>What to submit</h2>
+<p>Submit the notebook, two adapter directories, configuration JSON, trainable-parameter audit, loss table/plot, paired outputs, resource measurements, and limitations.</p>
+<h2>Rubric (10 points)</h2>
+<ul>
+<li>Reproducible real-data configuration (2)</li>
+<li>Trainable-parameter and objective checks (2)</li>
+<li>Controlled rank experiment and measurements (3)</li>
+<li>Save/reload evidence, paired outputs, and cautious conclusion (3)</li>
+</ul>
+
+    </article>
+    <a class="button" href="../../huggingface-models-and-fine-tuning/downloads/homework/03_supervised_finetuning_homework.md" download>Download assignment</a>
+  </main>
+  <footer><div class="wrap"><a href="../">Course materials</a> · <a href="../../">All courses</a></div></footer>
+</body>
+</html>

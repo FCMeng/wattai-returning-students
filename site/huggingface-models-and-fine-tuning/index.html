@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hugging Face Models and Fine-Tuning course materials">
+  <title>Hugging Face Models and Fine-Tuning</title>
+  <link rel="stylesheet" href="../assets/style.css">
+  <script src="../assets/tabs.js" defer></script>
+  <script src="../assets/feedback.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="wrap hero-grid course-hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Watt AI (INNO-4990) · Fall 2026</div>
+        <h1>Hugging Face Models and Fine-Tuning</h1>
+        <p>From model and processor contracts to authentic training data, LoRA/QLoRA, evaluation, and adapter packaging.</p>
+        <div class="creator-byline">Created by <strong>Fanchen Meng, Ph.D.</strong><span class="alumni-mark">’21 <img class="tiger-paw" src="../assets/clemson-tiger-paw.png" alt="Clemson Tiger Paw"></span></div>
+      </div>
+      <div class="brand-mark compact">
+        <img src="../assets/watt-family-innovation-center.png" alt="Watt Family Innovation Center, Clemson University logo">
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="notice">
+      <strong>Recommended environment:</strong> use Palmetto 2 with a CUDA GPU and internet access for the first model download. Run the setup notebook before beginning Lesson 1.
+    </div>
+
+    <section class="card">
+      <h2>Download the complete course</h2>
+      <p>The bundle includes all five notebooks, authentic OpenAssistant data, the verified classroom adapter, figures, the NASA video, helper module, requirements, and homework. It does not include solutions or authoring scripts.</p>
+      <a class="button" href="downloads/huggingface_models_and_finetuning_2026-Fall.zip" download>Download course ZIP</a>
+      <a class="button secondary" href="https://github.com/FCMeng/wattai-returning-students/tree/2026-Fall/huggingface_models_and_finetuning">Browse student files</a>
+    </section>
+
+    <h2 style="margin-top:36px">Lessons</h2>
+    <ol class="lesson-list">
+      <li>
+        <span class="lesson-title">0. Setup and diagnostics</span>
+        <p>Verify the course folder, package versions, Palmetto 2 GPU, authentic classroom data, tokenizer, and model configuration.</p>
+        <div class="downloads"><a href="notebooks/00_setup_and_diagnostics.html">Read online</a><a href="downloads/notebooks/00_setup_and_diagnostics.ipynb" download="00_setup_and_diagnostics.ipynb">Download notebook</a><a href="downloads/requirements.txt" download="requirements.txt">Download requirements.txt</a></div>
+        <div class="feedback-prompt"><a class="feedback-link" data-feedback-link data-material-id="huggingface-finetuning/setup-00" data-content-type="lesson" data-page-title="Setup and diagnostics" data-page-url="notebooks/00_setup_and_diagnostics.html" href="https://clemson.ca1.qualtrics.com/jfe/form/SV_3xQLX0ZmyK86AFo">Share feedback</a><span>Tell us what helped, what was unclear, or what broke.</span></div>
+      </li>
+      <li>
+        <span class="lesson-title">1. Hugging Face models and output contracts</span>
+        <p>Choose the right model family, compare base and instruction checkpoints, time thinking and direct modes, and inspect image/video output formats.</p>
+        <div class="resource-tabs" data-tabs>
+          <div class="tab-list" role="tablist" aria-label="Hugging Face model materials">
+            <button class="tab-button" id="hf-lesson-01-tab" role="tab" aria-selected="true" aria-controls="hf-lesson-01-panel">Lesson</button>
+            <button class="tab-button" id="hf-homework-01-tab" role="tab" aria-selected="false" aria-controls="hf-homework-01-panel" tabindex="-1">Homework</button>
+          </div>
+          <div class="tab-panel" id="hf-lesson-01-panel" role="tabpanel" aria-labelledby="hf-lesson-01-tab">
+            <div class="downloads"><a href="notebooks/01_huggingface_ecosystem.html">Read lesson online</a><a href="downloads/notebooks/01_huggingface_ecosystem.ipynb" download="01_huggingface_ecosystem.ipynb">Download notebook</a></div>
+            <div class="feedback-prompt"><a class="feedback-link" data-feedback-link data-material-id="huggingface-finetuning/lesson-01" data-content-type="lesson" data-page-title="Hugging Face models and output contracts" data-page-url="notebooks/01_huggingface_ecosystem.html" href="https://clemson.ca1.qualtrics.com/jfe/form/SV_3xQLX0ZmyK86AFo">Share feedback</a><span>Tell us what helped, what was unclear, or what broke.</span></div>
+          </div>
+          <div class="tab-panel" id="hf-homework-01-panel" role="tabpanel" aria-labelledby="hf-homework-01-tab" hidden>
+            <p><span class="homework-label">Assignment:</span> Compare and Parse Hugging Face Model Outputs</p>
+            <div class="downloads"><a href="homework/01_huggingface_ecosystem_homework.html">Read homework online</a><a href="downloads/homework/01_huggingface_ecosystem_homework.md" download="01_huggingface_ecosystem_homework.md">Download assignment</a></div>
+            <div class="feedback-prompt"><a class="feedback-link" data-feedback-link data-material-id="huggingface-finetuning/homework-01" data-content-type="homework" data-page-title="Homework: Compare and Parse Hugging Face Model Outputs" data-page-url="homework/01_huggingface_ecosystem_homework.html" href="https://clemson.ca1.qualtrics.com/jfe/form/SV_3xQLX0ZmyK86AFo">Share feedback</a><span>Tell us what helped, what was unclear, or what broke.</span></div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <span class="lesson-title">2. Fine-tuning data and objective</span>
+        <p>Audit authentic OpenAssistant splits, render chat templates, construct response-only labels, and estimate sequence and memory requirements.</p>
+        <div class="resource-tabs" data-tabs>
+          <div class="tab-list" role="tablist" aria-label="Fine-tuning data materials">
+            <button class="tab-button" id="hf-lesson-02-tab" role="tab" aria-selected="true" aria-controls="hf-lesson-02-panel">Lesson</button>
+            <button class="tab-button" id="hf-homework-02-tab" role="tab" aria-selected="false" aria-controls="hf-homework-02-panel" tabindex="-1">Homework</button>
+          </div>
+          <div class="tab-panel" id="hf-lesson-02-panel" role="tabpanel" aria-labelledby="hf-lesson-02-tab">
+            <div class="downloads"><a href="notebooks/02_finetuning_data_and_objective.html">Read lesson online</a><a href="downloads/notebooks/02_finetuning_data_and_objective.ipynb" download="02_finetuning_data_and_objective.ipynb">Download notebook</a></div>
+            <div class="feedback-prompt"><a class="feedback-link" data-feedback-link data-material-id="huggingface-finetuning/lesson-02" data-content-type="lesson" data-page-title="Fine-tuning data and objective" data-page-url="notebooks/02_finetuning_data_and_objective.html" href="https://clemson.ca1.qualtrics.com/jfe/form/SV_3xQLX0ZmyK86AFo">Share feedback</a><span>Tell us what helped, what was unclear, or what broke.</span></div>
+          </div>
+          <div class="tab-panel" id="hf-homework-02-panel" role="tabpanel" aria-labelledby="hf-homework-02-tab" hidden>
+            <p><span class="homework-label">Assignment:</span> Audit OpenAssistant Data and Build the SFT Objective</p>
+            <div class="downloads"><a href="homework/02_finetuning_data_and_objective_homework.html">Read homework online</a><a href="downloads/homework/02_finetuning_data_and_objective_homework.md" download="02_finetuning_data_and_objective_homework.md">Download assignment</a></div>
+            <div class="feedback-prompt"><a class="feedback-link" data-feedback-link data-material-id="huggingface-finetuning/homework-02" data-content-type="homework" data-page-title="Homework: Audit OpenAssistant Data and Build the SFT Objective" data-page-url="homework/02_finetuning_data_and_objective_homework.html" href="https://clemson.ca1.qualtrics.com/jfe/form/SV_3xQLX0ZmyK86AFo">Share feedback</a><span>Tell us what helped, what was unclear, or what broke.</span></div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <span class="lesson-title">3. Supervised fine-tuning with LoRA and QLoRA</span>
+        <p>Attach trainable low-rank adapters, calculate effective batch size, run real optimizer steps, save an adapter, and reload it into a fresh model.</p>
+        <div class="resource-tabs" data-tabs>
+          <div class="tab-list" role="tablist" aria-label="Supervised fine-tuning materials">
+            <button class="tab-button" id="hf-lesson-03-tab" role="tab" aria-selected="true" aria-controls="hf-lesson-03-panel">Lesson</button>
+            <button class="tab-button" id="hf-homework-03-tab" role="tab" aria-selected="false" aria-controls="hf-homework-03-panel" tabindex="-1">Homework</button>
+          </div>
+          <div class="tab-panel" id="hf-lesson-03-panel" role="tabpanel" aria-labelledby="hf-lesson-03-tab">
+            <div class="downloads"><a href="notebooks/03_supervised_finetuning.html">Read lesson online</a><a href="downloads/notebooks/03_supervised_finetuning.ipynb" download="03_supervised_finetuning.ipynb">Download notebook</a></div>
+            <div class="feedback-prompt"><a class="feedback-link" data-feedback-link data-material-id="huggingface-finetuning/lesson-03" data-content-type="lesson" data-page-title="Supervised fine-tuning with LoRA and QLoRA" data-page-url="notebooks/03_supervised_finetuning.html" href="https://clemson.ca1.qualtrics.com/jfe/form/SV_3xQLX0ZmyK86AFo">Share feedback</a><span>Tell us what helped, what was unclear, or what broke.</span></div>
+          </div>
+          <div class="tab-panel" id="hf-homework-03-panel" role="tabpanel" aria-labelledby="hf-homework-03-tab" hidden>
+            <p><span class="homework-label">Assignment:</span> Train and Reload a Real LoRA Adapter</p>
+            <div class="downloads"><a href="homework/03_supervised_finetuning_homework.html">Read homework online</a><a href="downloads/homework/03_supervised_finetuning_homework.md" download="03_supervised_finetuning_homework.md">Download assignment</a></div>
+            <div class="feedback-prompt"><a class="feedback-link" data-feedback-link data-material-id="huggingface-finetuning/homework-03" data-content-type="homework" data-page-title="Homework: Train and Reload a Real LoRA Adapter" data-page-url="homework/03_supervised_finetuning_homework.html" href="https://clemson.ca1.qualtrics.com/jfe/form/SV_3xQLX0ZmyK86AFo">Share feedback</a><span>Tell us what helped, what was unclear, or what broke.</span></div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <span class="lesson-title">4. Evaluation and adapter packaging</span>
+        <p>Collect paired outputs, build an auditable scorecard, verify adapter lineage, and test merge equivalence before packaging.</p>
+        <div class="resource-tabs" data-tabs>
+          <div class="tab-list" role="tablist" aria-label="Evaluation and packaging materials">
+            <button class="tab-button" id="hf-lesson-04-tab" role="tab" aria-selected="true" aria-controls="hf-lesson-04-panel">Lesson</button>
+            <button class="tab-button" id="hf-homework-04-tab" role="tab" aria-selected="false" aria-controls="hf-homework-04-panel" tabindex="-1">Homework</button>
+          </div>
+          <div class="tab-panel" id="hf-lesson-04-panel" role="tabpanel" aria-labelledby="hf-lesson-04-tab">
+            <div class="downloads"><a href="notebooks/04_peft_qlora_and_evaluation.html">Read lesson online</a><a href="downloads/notebooks/04_peft_qlora_and_evaluation.ipynb" download="04_peft_qlora_and_evaluation.ipynb">Download notebook</a></div>
+            <div class="feedback-prompt"><a class="feedback-link" data-feedback-link data-material-id="huggingface-finetuning/lesson-04" data-content-type="lesson" data-page-title="Evaluation and adapter packaging" data-page-url="notebooks/04_peft_qlora_and_evaluation.html" href="https://clemson.ca1.qualtrics.com/jfe/form/SV_3xQLX0ZmyK86AFo">Share feedback</a><span>Tell us what helped, what was unclear, or what broke.</span></div>
+          </div>
+          <div class="tab-panel" id="hf-homework-04-panel" role="tabpanel" aria-labelledby="hf-homework-04-tab" hidden>
+            <p><span class="homework-label">Assignment:</span> Evaluate and Package an Adapter</p>
+            <div class="downloads"><a href="homework/04_peft_qlora_and_evaluation_homework.html">Read homework online</a><a href="downloads/homework/04_peft_qlora_and_evaluation_homework.md" download="04_peft_qlora_and_evaluation_homework.md">Download assignment</a></div>
+            <div class="feedback-prompt"><a class="feedback-link" data-feedback-link data-material-id="huggingface-finetuning/homework-04" data-content-type="homework" data-page-title="Homework: Evaluate and Package an Adapter" data-page-url="homework/04_peft_qlora_and_evaluation_homework.html" href="https://clemson.ca1.qualtrics.com/jfe/form/SV_3xQLX0ZmyK86AFo">Share feedback</a><span>Tell us what helped, what was unclear, or what broke.</span></div>
+          </div>
+        </div>
+      </li>
+    </ol>
+
+    <section class="card">
+      <h2>Before you begin</h2>
+      <ol>
+        <li>Download and unzip the complete course.</li>
+        <li>Install <code>requirements.txt</code> in a fresh environment.</li>
+        <li>Request a suitable Palmetto 2 GPU and confirm internet access.</li>
+        <li>Open <code>notebooks/00_setup_and_diagnostics.ipynb</code>.</li>
+      </ol>
+      <p>Individual notebooks are useful for reading, but the complete bundle is required for the relative data, media, adapter, and helper paths to work.</p>
+    </section>
+  </main>
+  <footer><div class="wrap"><a href="../">All courses</a> · <a href="https://github.com/FCMeng/wattai-returning-students/tree/2026-Fall">Fall 2026 repository</a></div></footer>
+</body>
+</html>

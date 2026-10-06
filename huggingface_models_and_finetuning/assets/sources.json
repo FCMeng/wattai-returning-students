@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "assets": [
+    {
+      "path": "assets/nasa_three_pacific_hurricanes.mp4",
+      "title": "Trio of Hurricanes Over the Pacific Ocean",
+      "creator": "NASA Scientific Visualization Studio",
+      "source_url": "https://svs.gsfc.nasa.gov/30628/",
+      "license": "Public Domain",
+      "license_url": "https://svs.gsfc.nasa.gov/help/",
+      "access_date": "2026-07-24",
+      "sha256": "2bb1d01fe05b3605b5a1666b9e95bb2a5607f8fc63ec1c46ea8a4e6aba32663f",
+      "bytes": 1520050,
+      "caption": "NASA visualization of three hurricanes over the Pacific Ocean, released September 18, 2015.",
+      "alt_text": "Satellite-style visualization of three hurricanes over the Pacific Ocean.",
+      "modification": "Packaged without visual modification."
+    }
+  ],
+  "structural_references": [
+    {
+      "title": "Clemson CITI LLM Fine-Tuning Workshop",
+      "url": "https://clemsonciti.github.io/rcde_workshops/llms_finetune/00-index.html",
+      "use": "Decision-first sequencing inspiration only; no prose or images copied",
+      "license_note": "CC BY-NC workshop materials are not redistributed"
+    }
+  ]
+}

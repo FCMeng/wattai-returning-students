@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "artifact": "classroom_smol_lora",
+  "purpose": "Two-step PEFT systems-check adapter; no quality-improvement claim",
+  "base_model": {
+    "id": "HuggingFaceTB/SmolLM2-135M-Instruct",
+    "revision": "12fd25f77366fa6b3b4b768ec3050bf629380bac",
+    "license": "Apache-2.0"
+  },
+  "data": {
+    "source": "OpenAssistant/oasst1",
+    "source_revision": "694bedf",
+    "packaged_rows_used": 16,
+    "data_manifest_sha256": "64b8126cd97b664f7ce662a02c1098345948a3b8afbfa13513a8b77fd3c1993c"
+  },
+  "training": {
+    "seed": 2026,
+    "optimizer_steps": 2,
+    "max_length": 256,
+    "learning_rate": 0.0001,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 1,
+    "completion_only_loss": true,
+    "lora": {
+      "rank": 8,
+      "alpha": 16,
+      "dropout": 0.05,
+      "bias": "none",
+      "target_modules": ["q_proj", "k_proj", "v_proj", "o_proj"]
+    },
+    "observed_training_loss": 1.8067488074302673
+  },
+  "software": {
+    "python": "3.12.7",
+    "torch": "2.8.0",
+    "transformers": "5.15.0",
+    "datasets": "5.0.1",
+    "accelerate": "1.14.0",
+    "peft": "0.20.0",
+    "trl": "1.10.0"
+  },
+  "verification": {
+    "fresh_reload": true,
+    "reload_trainable_parameters": 0,
+    "pre_post_merge_logit_shape": [1, 282, 49152],
+    "pre_post_merge_max_absolute_logit_difference": 0.0001544952392578125,
+    "pre_post_merge_mean_absolute_logit_difference": 0.000013058906006335746,
+    "greedy_generation_match_after_merge": true
+  },
+  "files": [
+    {"path": "adapters/classroom_smol_lora/README.md", "bytes": 1601, "sha256": "ecbb4a1ed73d8e67e323e27d17542e9f21c534eb442c8ab9cef2e82f5ccb4e42"},
+    {"path": "adapters/classroom_smol_lora/adapter_config.json", "bytes": 1118, "sha256": "6f850451ed744e6abdbb7161de80282e9a36a585ad96f758d73a7c6e0e8b7a47"},
+    {"path": "adapters/classroom_smol_lora/adapter_model.safetensors", "bytes": 3717656, "sha256": "82262b5ca6113f146b36521bc5af35e6d9c85a88257117da83fae746c268ff75"},
+    {"path": "adapters/classroom_smol_lora/chat_template.jinja", "bytes": 368, "sha256": "872be49dbb638044ad01b60388f48d469ff2980e5f0dccdc22ec907db54d0788"},
+    {"path": "adapters/classroom_smol_lora/tokenizer.json", "bytes": 3522871, "sha256": "bf346d64f6f0fbcefb4c1b6928a98241467dff36c6fbae5fe1785c4ff90667f4"},
+    {"path": "adapters/classroom_smol_lora/tokenizer_config.json", "bytes": 452, "sha256": "9b6f7008bcd69b60572d2e15b28caa540d605df1c08149553296574f66545e53"},
+    {"path": "adapters/classroom_smol_lora/training_args.bin", "bytes": 5777, "sha256": "396853d18b069a62be882b73a79cea44a5b3c60d5c6759aca97d63c1664f7949"}
+  ]
+}

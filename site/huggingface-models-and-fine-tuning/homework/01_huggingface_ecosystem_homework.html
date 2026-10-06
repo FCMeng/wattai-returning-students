@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Homework: Compare and Parse Hugging Face Model Outputs">
+  <title>Homework: Compare and Parse Hugging Face Model Outputs</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script src="../../assets/feedback.js" data-auto-button="true" data-material-id="huggingface-finetuning/homework-01" data-content-type="homework" data-page-title="Homework: Compare and Parse Hugging Face Model Outputs" defer></script>
+</head>
+<body>
+  <header><div class="wrap"><div class="eyebrow">Watt AI (INNO-4990) · Fall 2026</div><h1>Homework</h1><p>Hugging Face models and output contracts</p></div></header>
+  <main class="wrap assignment">
+    <a class="back-link" href="../">← Back to course materials</a>
+    <article class="assignment-body">
+<h1>Homework: Compare and Parse Hugging Face Model Outputs</h1>
+<h2>Goal</h2>
+<p>Compare thinking and direct generation under a controlled timing contract, run one real multimodal model, and build a parser for the actual output objects you observe. Expected working time: <strong>90–120 minutes</strong> plus model-download time.</p>
+<h2>Before you begin</h2>
+<p>Run <code>notebooks/00_setup_and_diagnostics.ipynb</code> and complete Lecture 01. Use Palmetto 2 with a suitable CUDA GPU. Record the GPU model, dtype, package versions, and whether <code>device_map=&quot;auto&quot;</code> placed any layers on CPU or disk. Do not substitute hand-written text for model output.</p>
+<h2>Part A — Audit the selected artifacts</h2>
+<p>Use <code>Qwen/Qwen3.5-9B</code> at revision <code>c202236235762e1c871ad0ccb60c8ee5ba337b9a</code>. For the multimodal comparison, choose <strong>one</strong> model that fits your allocation:</p>
+<ul>
+<li><code>Qwen/Qwen3-VL-8B-Instruct</code> at revision <code>0c351dd01ed87e9c1b53cbc748cba10e6187ff3b</code>; or</li>
+<li><code>Qwen/Qwen3-Omni-30B-A3B-Instruct</code> at revision <code>26291f793822fb6be9555850f06dfe95f2d7e695</code> only when you have the documented large-memory environment.</li>
+</ul>
+<p>For every model you run, record model ID, revision, license, model class, processor class, parameter dtype, device map, weight-download size when available, and media types accepted. Explain why a tokenizer alone is insufficient for image or video input.</p>
+<h2>Part B — Compare Qwen3.5 thinking and direct modes</h2>
+<p>Use this fixed prompt for both modes:</p>
+<blockquote>
+<p>A clinic has 17 appointments and 5 rooms. Explain a fair scheduling plan, then give a two-sentence final recommendation.</p>
+</blockquote>
+<p>Load the model once. Run one untimed warm-up, then collect at least three timed runs per mode with the same <code>max_new_tokens</code>, decoding settings, prompt, and GPU. Synchronize CUDA around the timed region. Store mode, input tokens, output tokens, wall time, tokens/second, completion status, and final answer for every run. Report median latency and explain whether latency changed because of throughput, output length, or both.</p>
+<p>Use <code>enable_thinking=False</code> for direct mode and <code>enable_thinking=True</code> for thinking mode. Do not use <code>/think</code> or <code>/nothink</code>. If the thinking output reaches the token cap without <code>&lt;/think&gt;</code>, increase the cap once and record the second run rather than claiming that parsing failed.</p>
+<h2>Part C — Run one real image or video interaction</h2>
+<p>For Qwen3-VL, use <code>assets/figures/lecture-01-01-hf_artifacts.png</code> and ask the model to describe the flow and identify one limitation. Print every processor-output key with tensor shape and dtype before generation.</p>
+<p>For Qwen3-Omni, use <code>assets/nasa_three_pacific_hurricanes.mp4</code>, keep <code>return_audio=False</code>, and ask the model to list visible weather systems and state what the pixels alone cannot prove. Record the returned tuple/object types and whether an audio value is present. Do not attempt Omni on a GPU allocation below the model card's documented requirement.</p>
+<h2>Part D — Discover and normalize the output format</h2>
+<p>For each actual run, save:</p>
+<ol>
+<li><code>type(raw_output).__name__</code>;</li>
+<li>a safely truncated <code>repr(raw_output)</code>;</li>
+<li>mapping keys or public attributes;</li>
+<li>the exact path used to reach token IDs, decoded text, reasoning text, final text, and optional audio.</li>
+</ol>
+<p>Write a model/client-specific adapter that returns:</p>
+<pre><code class="language-python">{
+    &quot;final_text&quot;: str,
+    &quot;reasoning_text&quot;: str | None,
+    &quot;audio_present&quot;: bool,
+    &quot;raw_type&quot;: str,
+}
+</code></pre>
+<p>Deliberately apply one wrong assumption—for example <code>.choices[0].message.content</code> to a local tensor, <code>result[&quot;generated_text&quot;]</code> to an OpenAI object, or treating an Omni pair as one tensor. Capture the exception or wrong value, explain why the assumption failed, and then show the corrected parser.</p>
+<h2>Part E — Explore one additional model</h2>
+<p>Choose another official Hugging Face chat or multimodal model that fits your hardware. Record its pinned revision and model-card URL. Determine its expected message schema and output type from official documentation, run one non-sensitive prompt, and extend your adapter or add a separate adapter. Explain why reusing one parser unchanged was or was not safe.</p>
+<h2>Hints</h2>
+<details><summary>Timing CUDA correctly</summary>Call `torch.cuda.synchronize()` immediately before starting the clock and immediately after generation. Otherwise the CPU timer may stop while GPU kernels are still queued.</details>
+
+<details><summary>Finding the final answer</summary>Preserve the raw decoded text first. If it contains `<think>`, split at `</think>` only after checking that the closing marker exists. Missing closure usually means truncation.</details>
+
+<details><summary>Inspecting an unfamiliar result</summary>Start with `type`, a truncated `repr`, mapping keys, and non-private attributes. Do not begin by guessing `.content`.</details>
+
+<details><summary>Freeing GPU memory</summary>Delete the model and processor, run `import gc; gc.collect()`, then call `torch.cuda.empty_cache()`. Confirm memory before loading the next large model.</details>
+
+<h2>Suggested workflow</h2>
+<ol>
+<li>Request a suitable GPU and record the pinned model, processor, software, dtype, and device map.</li>
+<li>Load Qwen3.5 once, warm up, and collect repeated thinking/direct timing records.</li>
+<li>Run one real image or video interaction and inspect every processor tensor and raw output type.</li>
+<li>Demonstrate one incorrect parsing assumption, then implement and test the corrected adapter.</li>
+<li>Explore one additional official model and explain whether the existing parser remains valid.</li>
+</ol>
+<h2>What to submit</h2>
+<p>Submit one notebook, <code>timing_records.jsonl</code>, your parser/adapters, the artifact table, actual image/video output, the deliberate parser failure, and a short comparison discussing latency, output length, hardware, truncation, and format differences. Do not submit model weights or sensitive chain-of-thought logs.</p>
+<h2>Rubric (10 points)</h2>
+<ul>
+<li>Pinned artifact, hardware, and processor audit (2)</li>
+<li>Controlled thinking/direct timing experiment (3)</li>
+<li>Correct real image/video interaction and tensor inspection (2)</li>
+<li>Raw-output investigation, failed assumption, and corrected parser (2)</li>
+<li>Additional-model exploration and calibrated conclusion (1)</li>
+</ul>
+
+    </article>
+    <a class="button" href="../../huggingface-models-and-fine-tuning/downloads/homework/01_huggingface_ecosystem_homework.md" download>Download assignment</a>
+  </main>
+  <footer><div class="wrap"><a href="../">Course materials</a> · <a href="../../">All courses</a></div></footer>
+</body>
+</html>

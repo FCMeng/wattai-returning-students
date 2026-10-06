@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Homework: Audit OpenAssistant Data and Build the SFT Objective">
+  <title>Homework: Audit OpenAssistant Data and Build the SFT Objective</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script src="../../assets/feedback.js" data-auto-button="true" data-material-id="huggingface-finetuning/homework-02" data-content-type="homework" data-page-title="Homework: Audit OpenAssistant Data and Build the SFT Objective" defer></script>
+</head>
+<body>
+  <header><div class="wrap"><div class="eyebrow">Watt AI (INNO-4990) · Fall 2026</div><h1>Homework</h1><p>Fine-tuning data and objective</p></div></header>
+  <main class="wrap assignment">
+    <a class="back-link" href="../">← Back to course materials</a>
+    <article class="assignment-body">
+<h1>Homework: Audit OpenAssistant Data and Build the SFT Objective</h1>
+<h2>Goal</h2>
+<p>Prove that the packaged OpenAssistant split is isolated and construct response-only labels with the real classroom tokenizer. Expected working time: <strong>75–90 minutes</strong>.</p>
+<h2>Part A — Validate provenance and splits</h2>
+<p>Load all 2,000 training and 250 evaluation rows. Report row counts, unique <code>source_tree_id</code> counts, missing IDs, role-sequence violations, exact duplicate conversations within training, and exact duplicates across splits. Assert that train/evaluation tree overlap is zero. Show one real multi-turn example with content shortened only for display.</p>
+<h2>Part B — Render and label one conversation</h2>
+<p>Load the pinned SmolLM2 tokenizer. Render the selected messages as text, tokenize the complete conversation, and construct labels that are <code>-100</code> for prompt tokens and active for the final assistant answer. Report <code>T</code>, the first active position, active token count, and active-label fraction. Decode only active labels and verify that they correspond to the human assistant answer.</p>
+<h2>Part C — Audit truncation</h2>
+<p>Measure token lengths for at least 500 training rows. Report median, p90, p95, maximum, and counts above 256 and 512 tokens. Apply a 256-token limit to the longest example. State what prompt context and answer content are lost, then propose a documented filter or truncation policy.</p>
+<h2>Part D — Deliberately break the objective</h2>
+<p>Create two incorrect label sets: one that trains on every token and one whose truncation removes every answer token. For each, explain the misleading behavior it would teach or the reason the example contributes no useful loss.</p>
+<h2>Hints</h2>
+<details><summary>Stable duplicate signature</summary>Serialize `messages` with sorted JSON keys and hash the UTF-8 bytes. Do not compare only row IDs.</details>
+
+<details><summary>Tree isolation</summary>Build sets from `source_tree_id`; row-level random splitting is not enough because branches can share ancestors.</details>
+
+<details><summary>Active labels</summary>`sum(label != -100 for label in labels)` counts supervised positions. Decode only those non-ignored IDs.</details>
+
+<h2>Suggested workflow</h2>
+<ol>
+<li>Load both packaged splits and run schema, duplicate, and tree-overlap checks.</li>
+<li>Select one real conversation and render it with the pinned tokenizer.</li>
+<li>Build and inspect response-only labels, including decoded active tokens.</li>
+<li>Measure the real length distribution and inspect the longest example.</li>
+<li>Run both broken-label tests and justify a truncation/filter policy.</li>
+</ol>
+<h2>What to submit</h2>
+<p>Submit one notebook with tables, assertions, one rendered example, label inspection, length distribution, two failure demonstrations, and your recommended policy.</p>
+<h2>Rubric (10 points)</h2>
+<ul>
+<li>Provenance, schema, duplicate, and tree-isolation audit (3)</li>
+<li>Correct tokenizer rendering and response-only labels (3)</li>
+<li>Quantitative truncation analysis and justified policy (2)</li>
+<li>Broken examples, interpretation, and clear reporting (2)</li>
+</ul>
+
+    </article>
+    <a class="button" href="../../huggingface-models-and-fine-tuning/downloads/homework/02_finetuning_data_and_objective_homework.md" download>Download assignment</a>
+  </main>
+  <footer><div class="wrap"><a href="../">Course materials</a> · <a href="../../">All courses</a></div></footer>
+</body>
+</html>

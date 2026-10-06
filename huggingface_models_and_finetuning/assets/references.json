@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "references": [
+    {
+      "title": "Hugging Face Chat Templates",
+      "creator_or_organization": "Hugging Face",
+      "url": "https://huggingface.co/docs/transformers/chat_templating",
+      "accessed": "2026-08-18",
+      "role": "Official message-format and generation-prompt behavior.",
+      "used_in_lectures": [
+        1,
+        2
+      ],
+      "reuse": "Citation and verification only; no prose, code, or figures copied"
+    },
+    {
+      "title": "PEFT LoRA Guide",
+      "creator_or_organization": "Hugging Face",
+      "url": "https://huggingface.co/docs/peft/main/conceptual_guides/lora",
+      "accessed": "2026-08-18",
+      "role": "Official adapter concepts and configuration meanings.",
+      "used_in_lectures": [
+        1,
+        3,
+        4
+      ],
+      "reuse": "Citation and verification only; no prose, code, or figures copied"
+    },
+    {
+      "title": "TRL SFTTrainer",
+      "creator_or_organization": "Hugging Face",
+      "url": "https://huggingface.co/docs/trl/sft_trainer",
+      "accessed": "2026-08-18",
+      "role": "Official SFT data, masking, packing, and trainer behavior.",
+      "used_in_lectures": [
+        2,
+        3
+      ],
+      "reuse": "Citation and verification only; no prose, code, or figures copied"
+    },
+    {
+      "title": "QLoRA",
+      "creator_or_organization": "Tim Dettmers et al.",
+      "url": "https://arxiv.org/abs/2305.14314",
+      "accessed": "2026-08-18",
+      "role": "Primary source for NF4, double quantization, and paged optimizers.",
+      "used_in_lectures": [
+        3,
+        4
+      ],
+      "reuse": "Citation and verification only; no prose, code, or figures copied"
+    },
+    {
+      "title": "Bitsandbytes quantization",
+      "creator_or_organization": "Hugging Face",
+      "url": "https://huggingface.co/docs/transformers/quantization/bitsandbytes",
+      "accessed": "2026-08-18",
+      "role": "Official four-bit model-loading and NF4 configuration behavior.",
+      "used_in_lectures": [3, 4],
+      "reuse": "Citation and verification only; no prose, code, or figures copied"
+    },
+    {
+      "title": "SmolLM2-135M-Instruct model card",
+      "creator_or_organization": "Hugging FaceTB",
+      "url": "https://huggingface.co/HuggingFaceTB/SmolLM2-135M-Instruct",
+      "accessed": "2026-08-18",
+      "role": "Pinned classroom model architecture, artifact, and Apache-2.0 license record.",
+      "used_in_lectures": [1, 2, 3, 4],
+      "reuse": "Model download and citation; no external figure redistributed"
+    },
+    {
+      "title": "Qwen2.5-1.5B-Instruct model card",
+      "creator_or_organization": "Qwen",
+      "url": "https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct",
+      "accessed": "2026-08-18",
+      "role": "Pinned CUDA extension model and Apache-2.0 license record.",
+      "used_in_lectures": [1, 3, 4],
+      "reuse": "Model download and citation; no external figure redistributed"
+    },
+    {
+      "title": "Qwen3.5-9B model card",
+      "creator_or_organization": "Qwen",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-9B",
+      "accessed": "2026-08-19",
+      "role": "Official thinking/direct-mode, multimodal-input, sampling, and output-format guidance.",
+      "used_in_lectures": [1],
+      "reuse": "Model download and citation; no external figure redistributed"
+    },
+    {
+      "title": "Qwen3-VL-8B-Instruct model card",
+      "creator_or_organization": "Qwen",
+      "url": "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct",
+      "accessed": "2026-08-19",
+      "role": "Official image/video processor and generation contract.",
+      "used_in_lectures": [1],
+      "reuse": "Model download and citation; no external figure redistributed"
+    },
+    {
+      "title": "Qwen3-Omni model card",
+      "creator_or_organization": "Qwen",
+      "url": "https://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Thinking",
+      "accessed": "2026-08-19",
+      "role": "Official multimodal processor, output tuple, and GPU-memory guidance.",
+      "used_in_lectures": [1],
+      "reuse": "Model download and citation; no external figure redistributed"
+    }
+  ]
+}

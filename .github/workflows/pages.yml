@@ -32,6 +32,22 @@ jobs:
           cp llm_agents_and_video_analysis/notebooks/*.ipynb site/llm-agents-and-video-analysis/downloads/notebooks/
           cp llm_agents_and_video_analysis/homework/*.md site/llm-agents-and-video-analysis/downloads/homework/
           cp llm_agents_and_video_analysis/requirements.txt site/llm-agents-and-video-analysis/downloads/requirements.txt
+          mkdir -p site/huggingface-models-and-fine-tuning/downloads/notebooks
+          mkdir -p site/huggingface-models-and-fine-tuning/downloads/homework
+          cp huggingface_models_and_finetuning/notebooks/*.ipynb site/huggingface-models-and-fine-tuning/downloads/notebooks/
+          cp huggingface_models_and_finetuning/homework/*.md site/huggingface-models-and-fine-tuning/downloads/homework/
+          cp huggingface_models_and_finetuning/requirements.txt site/huggingface-models-and-fine-tuning/downloads/requirements.txt
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+
+          source = Path("huggingface_models_and_finetuning")
+          destination = Path("site/huggingface-models-and-fine-tuning/downloads/huggingface_models_and_finetuning_2026-Fall.zip")
+          with zipfile.ZipFile(destination, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+              for path in sorted(source.rglob("*")):
+                  if path.is_file():
+                      archive.write(path, Path(source.name) / path.relative_to(source))
+          PY
       - name: Add Cloudflare Web Analytics
         run: |
           python - <<'PY'

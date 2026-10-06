@@ -6,9 +6,10 @@ This public repository contains the student-facing materials for Watt AI
 (INNO-4990) at the Watt Family Innovation Center. Each course is standalone:
 students may begin with the topic that matches their interests and background.
 
-## Available course
+## Available courses
 
 - [LLM Agents and Video Analysis](https://fcmeng.github.io/wattai-returning-students/llm-agents-and-video-analysis/)
+- [Hugging Face Models and Fine-Tuning](https://fcmeng.github.io/wattai-returning-students/huggingface-models-and-fine-tuning/)
 
 The website provides readable HTML lessons, individual notebook downloads,
 and a complete course bundle. The complete bundle is the recommended option

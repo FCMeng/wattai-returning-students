@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Homework: Evaluate and Package an Adapter">
+  <title>Homework: Evaluate and Package an Adapter</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script src="../../assets/feedback.js" data-auto-button="true" data-material-id="huggingface-finetuning/homework-04" data-content-type="homework" data-page-title="Homework: Evaluate and Package an Adapter" defer></script>
+</head>
+<body>
+  <header><div class="wrap"><div class="eyebrow">Watt AI (INNO-4990) · Fall 2026</div><h1>Homework</h1><p>Evaluation and adapter packaging</p></div></header>
+  <main class="wrap assignment">
+    <a class="back-link" href="../">← Back to course materials</a>
+    <article class="assignment-body">
+<h1>Homework: Evaluate and Package an Adapter</h1>
+<h2>Goal</h2>
+<p>Create an evidence-backed evaluation report and a reusable adapter package. Expected working time: <strong>75–100 minutes</strong> after adapters are available.</p>
+<h2>Part A — Freeze the evaluation contract</h2>
+<p>Before generating, select ten evaluation IDs by a deterministic rule and write them to <code>evaluation_contract.json</code>. Record base model ID/revision, tokenizer source, adapter path/hash, <code>do_sample=False</code>, <code>max_new_tokens=80</code>, package versions, and scoring definitions.</p>
+<h2>Part B — Collect paired evidence</h2>
+<p>For each ID, generate base and LoRA answers from identical message histories. Store prompt ID, prompt, human reference, both outputs, latency, and output token counts in JSONL. Add blinded human labels for instruction compliance, factual concern, unsupported claim, and preferred answer. Include written criteria so another grader could repeat the labels.</p>
+<h2>Part C — Report successes and failures</h2>
+<p>Aggregate each label with its denominator. Show at least one case where LoRA is preferred, one where base is preferred or tied, and one failure. Distinguish mechanical pipeline checks from semantic judgments. State why ten examples cannot establish broad capability improvement.</p>
+<h2>Part D — Verify packaging</h2>
+<p>Save the adapter and tokenizer. Write a manifest containing base revision, data-manifest hash, configuration, seed, versions, metrics, and file hashes. Reload the adapter into a fresh base. Merge a copy, compare pre/post-merge logits on one fixed prompt, and report maximum absolute difference and both artifact sizes.</p>
+<h2>Hints</h2>
+<details><summary>Avoid selection bias</summary>Choose IDs before generating—such as the first ten sorted IDs or a seeded sample—and record the rule.</details>
+
+<details><summary>Blind review</summary>Label outputs as A/B and hide the variant name until after judging.</details>
+
+<details><summary>Merge verification</summary>Use the same tokenized prompt and evaluation mode. Tensor shapes must match; expect small floating-point differences, not exact bit identity.</details>
+
+<h2>Suggested workflow</h2>
+<ol>
+<li>Save evaluation IDs and decoding rules before viewing generated outputs.</li>
+<li>Collect base and adapter records with the same prompt histories.</li>
+<li>Blind the variant names, apply written review criteria, and aggregate denominators.</li>
+<li>Show representative successes, ties, and failures without cherry-picking.</li>
+<li>Write hashes and lineage, reload, merge, and report numerical verification.</li>
+</ol>
+<h2>What to submit</h2>
+<p>Submit the evaluation contract, paired JSONL, scorecard, human-review criteria, adapter manifest/card, reload output, merge-equivalence result, and a deployment recommendation with limitations.</p>
+<h2>Rubric (10 points)</h2>
+<ul>
+<li>Frozen paired evaluation and traceable raw records (3)</li>
+<li>Transparent human criteria, aggregate results, and failures (3)</li>
+<li>Adapter lineage, hashes, reload, and merge verification (3)</li>
+<li>Calibrated deployment conclusion (1)</li>
+</ul>
+
+    </article>
+    <a class="button" href="../../huggingface-models-and-fine-tuning/downloads/homework/04_peft_qlora_and_evaluation_homework.md" download>Download assignment</a>
+  </main>
+  <footer><div class="wrap"><a href="../">Course materials</a> · <a href="../../">All courses</a></div></footer>
+</body>
+</html>
