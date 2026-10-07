@@ -1,5 +1,7 @@
 # Homework: Evaluate and Package an Adapter
 
+**Due:** November 8, 2026
+
 ## Goal
 
 Create an evidence-backed evaluation report and a reusable adapter package. Expected working time: **75–100 minutes** after adapters are available.

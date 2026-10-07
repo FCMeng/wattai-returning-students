@@ -1,5 +1,7 @@
 # Homework: Compare and Parse Hugging Face Model Outputs
 
+**Due:** October 18, 2026
+
 ## Goal
 
 Compare thinking and direct generation under a controlled timing contract, run one real multimodal model, and build a parser for the actual output objects you observe. Expected working time: **90–120 minutes** plus model-download time.

@@ -1,5 +1,7 @@
 # Homework: Train and Reload a Real LoRA Adapter
 
+**Due:** November 1, 2026
+
 ## Goal
 
 Run a controlled PEFT experiment on real OpenAssistant records, save the adapter, and prove that a fresh process can reload it. Expected working time: **90–120 minutes** plus model download time.

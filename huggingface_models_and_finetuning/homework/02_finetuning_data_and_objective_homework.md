@@ -1,5 +1,7 @@
 # Homework: Audit OpenAssistant Data and Build the SFT Objective
 
+**Due:** October 25, 2026
+
 ## Goal
 
 Prove that the packaged OpenAssistant split is isolated and construct response-only labels with the real classroom tokenizer. Expected working time: **75–90 minutes**.
